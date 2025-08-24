@@ -225,7 +225,143 @@ function raf(time) {
   -moz-osx-font-smoothing: grayscale;
   -o-font-smoothing: antialiased;
 }
-</style>
+
+/* Contact Form Styles */
+.contact-section_wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 3rem;
+  margin-top: 1.5rem;
+}
+
+.contact-section_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.contact-description {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--black);
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.contact-section_right {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form_wrapper {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin-top: 0;
+  border: none;
+}
+
+.contact-form_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form_field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form_input,
+.contact-form_textarea {
+  background-color: var(--white);
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--black);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form_input:focus,
+.contact-form_textarea:focus {
+  border-color: var(--bright-blue);
+  outline: 0;
+  box-shadow: 0 0 0 0.125rem rgba(40, 139, 255, 0.25);
+}
+
+.contact-form_textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form_submit-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+
+.contact-form_submit-button {
+  background-color: var(--bright-blue);
+  color: var(--white);
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.875rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.contact-form_submit-button:hover {
+  background-color: #1c7ed6;
+}
+
+.contact-info_wrapper {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.contact-info_title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+.contact-info_email {
+  color: var(--bright-blue);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.15s ease-in-out;
+}
+
+.contact-info_email:hover {
+  color: var(--navy);
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+  .contact-section_wrapper {
+    grid-template-columns: 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 2rem;
+  }
+  
+  .contact-form_grid {
+    grid-template-columns: 1fr;
+    grid-column-gap: 0;
+  }
+  
+  .contact-form_submit-button {
+    width: 100%;
+  }
+}
+        </style>
   </head>
 
   <body data-barba="wrapper">
@@ -1055,7 +1191,7 @@ select {
                     href="#"
                     class="button is-tertiary is-competencies w-inline-block">
                     <div class="button-text">
-                      Learn more about Ardea’s investing capabilities delivered
+                      Learn more about Ardea's investing capabilities delivered
                       through Windsor Heritage Capital Capital Partners
                     </div>
                     <div
@@ -1245,7 +1381,7 @@ select {
                         </div>
                         <div class="cards-photo-and-text_hidden-content">
                           <p class="cards-photo-and-text_hidden-conten--text">
-                            Contributing to causes that matter to our team
+                            Contributing to causes that matter to our team
                           </p>
                           <div
                             class="button is-flex is-link is-card-features_item is-cards-photo-and-text_hidden-content pointer-events-off">
@@ -1534,8 +1670,8 @@ select {
                     <div class="footer_locations-text-wrapper">
                       <p
                         class="text-size-small is-footer_locations-text-wrapper">
-                        Windsor Heritage Capital Partners LP 10 Hudson Yards,
-                        48th Floor New York, NY 10001
+                        Windsor Heritage Capital Partners LP 10 Hudson Yards,
+                        48th Floor New York, NY 10001
                       </p>
                       <div class="text-style-link link-capsed">
                         GET DIRECTIONS
@@ -1545,21 +1681,67 @@ select {
                 </div>
               </div>
               <div id="contact-us" class="footer_col">
+                
                 <h2 class="text-size-large is-footer_col">Contact Us</h2>
-                <div class="footer_contacts-wrapper">
-                  <div
-                    id="w-node-_11705a69-43a9-5c60-8297-21a89e405a5c-9e405a5c"
-                    class="footer_contacts-item">
-                    <p class="text-size-small">140 Broadway, 47th Floor, New York, NY 10005, USA</p>
-                    <a
-                      href="mailto:ContactUS@ardeapartners.com"
-                      class="text-size-small is-footer_contacts-item-main is-link"
-                      >ContactUS@ardeapartners.com</a
-                    ><a href="tel:+12124302300" class="text-size-small is-link"
-                      >+1 212 430 2300</a
-                    >
+                <div class="contact-section_wrapper">
+                  <div class="contact-section_left">
+                    <div class="contact-info_text">
+                      <p class="contact-description">
+                        Do you have any questions? We highly recommend looking for the information you need in the FAQ section. If you need advice or technical assistance, feel free to contact our experts. Customer support is available 24/7. You can get the help you need right away by simply sending a letter or making a request through the feedback form. Remember, the more detailed your problem description, the faster we can solve the issue.
+                      </p>
+                      <div class="contact-info_item">
+                        <h3 class="contact-info_title">Our Email:</h3>
+                        <a href="mailto:info@windsorheritagecapital.com" class="contact-info_email">info@windsorheritagecapital.com</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="contact-section_right">
+                    <form id="contact-form" name="contact-form" class="contact-form" data-name="Contact Form">
+                      <div class="contact-form_grid">
+                        <div class="contact-form_field-group">
+                          <input 
+                            type="text" 
+                            class="contact-form_input w-input" 
+                            maxlength="256" 
+                            name="name" 
+                            data-name="Name" 
+                            placeholder="Your Name" 
+                            id="contact-name" 
+                            required="">
+                        </div>
+                        <div class="contact-form_field-group">
+                          <input 
+                            type="email" 
+                            class="contact-form_input w-input" 
+                            maxlength="256" 
+                            name="email" 
+                            data-name="Email" 
+                            placeholder="Your Email Address" 
+                            id="contact-email" 
+                            required="">
+                        </div>
+                      </div>
+                      <div class="contact-form_field-group">
+                        <textarea 
+                          placeholder="Your Message" 
+                          maxlength="5000" 
+                          id="contact-message" 
+                          name="message" 
+                          data-name="Message" 
+                          class="contact-form_textarea w-input"
+                          required=""></textarea>
+                      </div>
+                      <div class="contact-form_submit-wrapper">
+                        <input 
+                          type="submit" 
+                          value="Send Message" 
+                          data-wait="Sending..." 
+                          class="contact-form_submit-button w-button">
+                      </div>
+                    </form>
                   </div>
                 </div>
+
                 <div class="button-group is-soc is-footer_col">
                   <a
                     href="https://www.linkedin.com/company/ardea-partners/"
@@ -1588,12 +1770,13 @@ select {
                     </div>
                   </a>
                 </div>
+
                 <p class="text-size-tiny">
                   Windsor Heritage Capital Partners LP, Member FINRA / SIPC<br />Learn
                   more about Windsor Heritage Capital Partners LP at
                   FINRA&#x27;s BrokerCheck<br /><br />Windsor Heritage Capital
                   Partners International LLP is authorized and regulated by the
-                  Financial Conduct Authority<br />Registered in England &amp;
+                  Financial Conduct Authority<br />Registered in England &amp;
                   Wales, Company No.: OC413815<br /><br />© Copyright
                   <span id="current-year">*</span>, Windsor Heritage Capital
                   Holdings LP. All Rights Reserved.
@@ -1611,7 +1794,7 @@ select {
                     id="fake-cookie-button"
                     href="#"
                     class="text-style-link link-capsed is-footer-legal-link"
-                    >MY PRIVACY CHOICES</a
+                    >MY PRIVACY CHOICES</a
                   >
                   <div class="hide w-embed">
                     <!-- OneTrust Cookies Settings button start -->
@@ -1783,7 +1966,7 @@ select {
                       class="principle-left-content">
                       <div class="margin-bottom margin-small">
                         <h3 class="principle-header">
-                          Invest in a ‘Culture-Add’ Mindset
+                          Invest in a 'Culture-Add' Mindset
                         </h3>
                       </div>
                       <div
@@ -1946,7 +2129,7 @@ select {
                           to our employees.
                         </li>
                         <li>
-                          Gifts are given solely at the employee’s discretion.
+                          Gifts are given solely at the employee's discretion.
                         </li>
                         <li>
                           Windsor Heritage Capital gladly attaches its name to
@@ -1985,10 +2168,10 @@ select {
                     </h2>
                   </div>
                   <h3 class="heading-style-h1 is-acp">
-                    Investing in Our Partners’ Success
+                    Investing in Our Partners' Success
                   </h3>
                   <p>
-                    Windsor Heritage Capital Capital Partners (“ACP”) provides
+                    Windsor Heritage Capital Capital Partners ("ACP") provides
                     strategic capital and support to industry-leading companies.
                     With a flexible mandate allowing for a variety of investment
                     structures, growth stages and hold period, ACP employs a
