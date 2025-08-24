@@ -4438,7 +4438,7 @@ figcaption {
   grid-template-columns: 1fr 1fr;
   grid-auto-columns: 1fr;
   width: 35.8rem;
-  display: grid;
+  /* display: grid; */
 }
 
 .footer_contacts-item {
@@ -5148,7 +5148,7 @@ figcaption {
 
 .menu_logo-link {
   width: 20rem;
-  height: 2.875rem;
+  height: 5rem;
   position: relative;
 }
 
