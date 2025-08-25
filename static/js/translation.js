@@ -330,7 +330,7 @@ function detectBrowserLanguage() {
     return 'en';
 }
 
-// 获取存储的语言设置，优先级：cookie > sessionStorage > localStorage > 浏览器检测
+// 获取存储的语言设置，优先级：cookie > sessionStorage > localStorage > 默认英文
 function getStoredLanguage() {
     // 从cookie中检查当前翻译状态
     const cookieMatch = document.cookie.match(/googtrans=\/[^\/]*\/([^;]*)/);
@@ -350,15 +350,8 @@ function getStoredLanguage() {
         return savedLang;
     }
     
-    // 首次访问，检测浏览器语言
-    const hasVisited = localStorage.getItem('hasVisited');
-    if (!hasVisited) {
-        const detectedLang = detectBrowserLanguage();
-        localStorage.setItem('selectedLanguage', detectedLang);
-        localStorage.setItem('hasVisited', 'true');
-        return detectedLang;
-    }
-    
+    // 如果没有任何存储的语言设置，默认为英文
+    // 不再根据浏览器语言自动检测，用户可以手动选择
     return 'en'; // 默认英文
 }
 
