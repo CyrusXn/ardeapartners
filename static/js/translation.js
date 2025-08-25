@@ -1,0 +1,485 @@
+/**
+ * 多语言翻译功能 - 公共文件
+ * 支持英文、中文简体、中文繁体
+ * 使用谷歌翻译API，支持本地翻译备用方案
+ */
+
+// 翻译源配置
+const TRANSLATION_SOURCES = [
+    {
+        name: 'google_cn',
+        url: 'https://translate.google.cn/translate_a/element.js?cb=gtElInit&client=wt',
+        timeout: 5000
+    },
+    {
+        name: 'google_com',
+        url: 'https://translate.google.com/translate_a/element.js?cb=gtElInit&client=wt',
+        timeout: 5000
+    }
+];
+
+// 全局变量
+let googleTranslateLib = null;
+let currentLanguage = 'en';
+let currentTranslationSource = null;
+let loadAttemptCount = 0;
+
+// 简单的本地翻译备用方案
+const LOCAL_TRANSLATIONS = {
+    'zh-CN': {
+        'About': '关于',
+        'Culture': '企业文化',
+        'Careers': '职业发展',
+        'Deposit and Withdrawal': '存款和取款',
+        'Strategic Advice. Trust & Partnership.': '战略建议。信任与合作伙伴关系。',
+        'Our Locations': '我们的地址',
+        'Contact Us': '联系我们',
+        'English': '英文',
+        '简体中文': '简体中文',
+        '繁體中文': '繁体中文',
+        'Team': '团队',
+        'Transactions': '交易',
+        'Home': '首页'
+    },
+    'zh-TW': {
+        'About': '關於',
+        'Culture': '企業文化',
+        'Careers': '職業發展',
+        'Deposit and Withdrawal': '存款和提款',
+        'Strategic Advice. Trust & Partnership.': '戰略建議。信任與合作夥伴關係。',
+        'Our Locations': '我們的地址',
+        'Contact Us': '聯繫我們',
+        'English': '英文',
+        '简体中文': '簡體中文',
+        '繁體中文': '繁體中文',
+        'Team': '團隊',
+        'Transactions': '交易',
+        'Home': '首頁'
+    }
+};
+
+// 动态加载翻译脚本
+function loadTranslationScript() {
+    if (loadAttemptCount >= TRANSLATION_SOURCES.length) {
+        showTranslateError('Translation service is temporarily unavailable. Please check your network connection.');
+        return;
+    }
+    
+    const source = TRANSLATION_SOURCES[loadAttemptCount];
+    
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = source.url;
+    
+    // 设置超时处理
+    const timeout = setTimeout(() => {
+        script.remove();
+        loadAttemptCount++;
+        loadTranslationScript();
+    }, source.timeout);
+    
+    script.onload = () => {
+        clearTimeout(timeout);
+        currentTranslationSource = source;
+    };
+    
+    script.onerror = () => {
+        clearTimeout(timeout);
+        script.remove();
+        loadAttemptCount++;
+        loadTranslationScript();
+    };
+    
+    document.head.appendChild(script);
+}
+
+// 谷歌翻译初始化（新版API）
+function gtElInit() {
+    try {
+        googleTranslateLib = new google.translate.TranslateService();
+        
+        // 标记翻译库已准备就绪
+        window.googleTranslateReady = true;
+        
+        // 应用缓存的语言设置
+        applyStoredLanguage();
+        
+    } catch (error) {
+        // 使用本地翻译作为备用方案
+        const savedLanguage = sessionStorage.getItem('selectedLanguage') || 'en';
+        if (savedLanguage !== 'en') {
+            applyLocalTranslation(savedLanguage);
+            sessionStorage.setItem('usingLocalTranslation', 'true');
+        }
+        updateLanguageButtons(savedLanguage);
+        showTranslateError();
+    }
+}
+
+// 语言切换函数（新版实现）
+function changeLanguage(langCode) {
+    // 防止重复切换到相同语言
+    if (currentLanguage === langCode) {
+        return;
+    }
+    
+    // 防止频繁切换
+    if (window.languageChanging) {
+        return;
+    }
+    window.languageChanging = true;
+    
+    try {
+        // 更新按钮状态
+        updateLanguageButtons(langCode);
+        
+        // 保存语言选择到sessionStorage和localStorage
+        sessionStorage.setItem('selectedLanguage', langCode);
+        localStorage.setItem('selectedLanguage', langCode);
+        currentLanguage = langCode;
+        
+        // 如果是英文，清除翻译
+        if (langCode === 'en') {
+            // 清除所有翻译相关的设置
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + window.location.hostname;
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+            sessionStorage.removeItem('usingLocalTranslation');
+            localStorage.removeItem('usingLocalTranslation');
+            // 重置标志位
+            window.languageChanging = false;
+            window.location.reload();
+            return;
+        }
+        
+        // 检查翻译库是否已加载
+        if (!googleTranslateLib) {
+            // 使用本地翻译作为备用方案
+            applyLocalTranslation(langCode);
+            sessionStorage.setItem('usingLocalTranslation', 'true');
+            localStorage.setItem('usingLocalTranslation', 'true');
+            // 重置标志位
+            window.languageChanging = false;
+            return;
+        }
+        
+        // 检查是否已经设置了翻译cookie
+        const existingCookie = document.cookie.match(/googtrans=\/[^\/]*\/([^;]*)/);
+        if (existingCookie && existingCookie[1] === langCode) {
+            // 确保按钮状态正确
+            updateLanguageButtons(langCode);
+            window.languageChanging = false;
+            return;
+        }
+        
+        // 设置翻译cookie
+        const translationPair = `/en/${langCode}`;
+        document.cookie = `googtrans=${translationPair}; path=/; max-age=31536000`;
+        
+        // 执行翻译
+        googleTranslateLib.translatePage('en', langCode, function(progress, done, error) {
+            if (error) {
+                showTranslateError();
+                // 重置标志位
+                window.languageChanging = false;
+            } else if (done) {
+                // 翻译完成，重置标志位
+                window.languageChanging = false;
+            }
+        });
+        
+    } catch (error) {
+        showTranslateError();
+        // 重置标志位
+        window.languageChanging = false;
+    }
+}
+
+// 更新语言按钮状态
+function updateLanguageButtons(langCode) {
+    const buttons = document.querySelectorAll('.language-selector button');
+    
+    // 清除所有按钮的active状态
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // 设置目标按钮为active
+    const buttonId = `lang-${langCode.toLowerCase().replace('_', '-')}`;
+    
+    const targetBtn = document.getElementById(buttonId);
+    if (targetBtn) {
+        targetBtn.classList.add('active');
+    } else {
+        // 如果直接查找失败，尝试遍历按钮
+        buttons.forEach(btn => {
+            const onclick = btn.getAttribute('onclick');
+            
+            if (onclick && onclick.includes(`'${langCode}'`)) {
+                btn.classList.add('active');
+            }
+        });
+    }
+}
+
+// 显示翻译错误提示
+function showTranslateError(message = 'Translation service temporarily unavailable. Please try again later.') {
+    const errorMsg = document.createElement('div');
+    errorMsg.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #ff4444;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        z-index: 10000;
+        font-size: 14px;
+        max-width: 300px;
+    `;
+    errorMsg.textContent = message;
+    document.body.appendChild(errorMsg);
+    
+    setTimeout(() => {
+        if (errorMsg.parentNode) {
+            errorMsg.parentNode.removeChild(errorMsg);
+        }
+    }, 5000);
+}
+
+// 本地翻译函数（备用方案）
+function applyLocalTranslation(langCode) {
+    if (!LOCAL_TRANSLATIONS[langCode]) return;
+    
+    const translations = LOCAL_TRANSLATIONS[langCode];
+    
+    // 翻译导航菜单
+    document.querySelectorAll('.menu_nav-item').forEach(link => {
+        const text = link.textContent.trim();
+        if (translations[text]) {
+            link.textContent = translations[text];
+        }
+    });
+    
+    // 翻译主标题
+    const heroTitle = document.querySelector('.hero-home_title');
+    if (heroTitle && translations[heroTitle.textContent.trim()]) {
+        heroTitle.textContent = translations[heroTitle.textContent.trim()];
+    }
+    
+    // 翻译页脚标题
+    document.querySelectorAll('.text-size-large.is-footer_col').forEach(title => {
+        const text = title.textContent.trim();
+        if (translations[text]) {
+            title.textContent = translations[text];
+        }
+    });
+    
+    // 翻译语言选择器按钮
+    document.querySelectorAll('.language-selector button').forEach(btn => {
+        const text = btn.textContent.trim();
+        if (translations[text]) {
+            btn.textContent = translations[text];
+        }
+    });
+    
+    // 显示备用翻译提示
+    showLocalTranslationNotice(langCode);
+}
+
+// 显示本地翻译提示
+function showLocalTranslationNotice(langCode) {
+    const notice = document.createElement('div');
+    notice.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #2196F3;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        z-index: 10000;
+        font-size: 12px;
+        max-width: 250px;
+    `;
+    
+    const messages = {
+        'zh-CN': '正在使用基础翻译模式',
+        'zh-TW': '正在使用基礎翻譯模式'
+    };
+    
+    notice.textContent = messages[langCode] || 'Using basic translation mode';
+    document.body.appendChild(notice);
+    
+    setTimeout(() => {
+        if (notice.parentNode) {
+            notice.parentNode.removeChild(notice);
+        }
+    }, 3000);
+}
+
+// 检测浏览器语言
+function detectBrowserLanguage() {
+    const userLang = navigator.language || navigator.userLanguage;
+    if (userLang.startsWith('zh')) {
+        if (userLang.includes('TW') || userLang.includes('HK') || userLang.includes('MO')) {
+            return 'zh-TW';
+        } else {
+            return 'zh-CN';
+        }
+    }
+    return 'en';
+}
+
+// 获取存储的语言设置，优先级：cookie > sessionStorage > localStorage > 浏览器检测
+function getStoredLanguage() {
+    // 从cookie中检查当前翻译状态
+    const cookieMatch = document.cookie.match(/googtrans=\/[^\/]*\/([^;]*)/);
+    if (cookieMatch && cookieMatch[1]) {
+        return cookieMatch[1];
+    }
+    
+    // 检查sessionStorage（跨页面保持）
+    const sessionLang = sessionStorage.getItem('selectedLanguage');
+    if (sessionLang) {
+        return sessionLang;
+    }
+    
+    // 检查localStorage（持久保存）
+    const savedLang = localStorage.getItem('selectedLanguage');
+    if (savedLang) {
+        return savedLang;
+    }
+    
+    // 首次访问，检测浏览器语言
+    const hasVisited = localStorage.getItem('hasVisited');
+    if (!hasVisited) {
+        const detectedLang = detectBrowserLanguage();
+        localStorage.setItem('selectedLanguage', detectedLang);
+        localStorage.setItem('hasVisited', 'true');
+        return detectedLang;
+    }
+    
+    return 'en'; // 默认英文
+}
+
+// 应用存储的语言设置
+function applyStoredLanguage() {
+    const storedLang = getStoredLanguage();
+    
+    // 更新全局状态和缓存
+    currentLanguage = storedLang;
+    sessionStorage.setItem('selectedLanguage', storedLang);
+    
+    // 更新按钮状态
+    updateLanguageButtons(storedLang);
+    
+    // 如果是英文，清除任何翻译
+    if (storedLang === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + window.location.hostname;
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        sessionStorage.removeItem('usingLocalTranslation');
+        return;
+    }
+    
+    // 先应用本地翻译作为即时备用方案
+    applyLocalTranslation(storedLang);
+    sessionStorage.setItem('usingLocalTranslation', 'true');
+    
+    // 检查Google翻译是否可用
+    if (!googleTranslateLib) {
+        return;
+    }
+    
+    // 完全复制按钮切换的逻辑
+    // 检查是否已经设置了翻译cookie
+    const existingCookie = document.cookie.match(/googtrans=\/[^\/]*\/([^;]*)/);
+    if (existingCookie && existingCookie[1] === storedLang) {
+        // 不返回，继续执行翻译以确保效果
+    }
+    
+    // 设置翻译cookie（和按钮切换完全一样）
+    const translationPair = `/en/${storedLang}`;
+    document.cookie = `googtrans=${translationPair}; path=/; max-age=31536000`;
+    
+    // 核心：执行翻译API（和按钮切换完全一样）
+    setTimeout(() => {
+        googleTranslateLib.translatePage('en', storedLang, function(progress, done, error) {
+            if (error) {
+                showTranslateError();
+            } else if (done) {
+                // 清除本地翻译标记，因为Google翻译已成功
+                sessionStorage.removeItem('usingLocalTranslation');
+            }
+        });
+    }, 500); // 给一点时间让cookie生效
+}
+
+// 初始化翻译功能
+function initializeTranslation() {
+    // 防止多次初始化
+    if (window.translationInitialized) {
+        return;
+    }
+    window.translationInitialized = true;
+    
+    // 立即获取并应用存储的语言设置
+    const storedLang = getStoredLanguage();
+    
+    // 更新全局状态和缓存
+    currentLanguage = storedLang;
+    sessionStorage.setItem('selectedLanguage', storedLang);
+    
+    // 立即更新按钮状态
+    updateLanguageButtons(storedLang);
+    
+    // 如果是非英文语言，立即应用本地翻译作为即时备用方案
+    if (storedLang !== 'en') {
+        // 立即应用本地翻译，不等待
+        applyLocalTranslation(storedLang);
+        sessionStorage.setItem('usingLocalTranslation', 'true');
+        
+        // 检查是否需要Google翻译
+        const cookieMatch = document.cookie.match(/googtrans=\/[^\/]*\/([^;]*)/);
+        if (cookieMatch && cookieMatch[1] === storedLang) {
+            // 清除本地翻译标记，因为Google翻译可用
+            sessionStorage.removeItem('usingLocalTranslation');
+        }
+    }
+    
+    // 异步启动Google翻译脚本加载
+    loadTranslationScript();
+}
+
+// 网络连接检查
+function checkNetworkAndRetry(callback) {
+    if (navigator.onLine) {
+        callback();
+    } else {
+        setTimeout(() => {
+            if (navigator.onLine) {
+                callback();
+            }
+        }, 2000);
+    }
+}
+
+// 页面加载完成后的初始化
+document.addEventListener('DOMContentLoaded', function() {
+    initializeTranslation();
+});
+
+// 页面加载完成后添加网络状态监听
+window.addEventListener('load', function() {
+    window.addEventListener('online', function() {
+        // Network connection restored
+    });
+    
+    window.addEventListener('offline', function() {
+        // Network connection lost
+    });
+});
+
+// 将主要函数暴露到全局作用域，供页面调用
+window.changeLanguage = changeLanguage;
+window.updateLanguageButtons = updateLanguageButtons;
+window.gtElInit = gtElInit;

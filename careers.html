@@ -161,7 +161,7 @@
       const lenis = new Lenis();
 
       lenis.on("scroll", (e) => {
-        console.log(e);
+        // console.log(e);
       });
 
       function raf(time) {
@@ -203,6 +203,103 @@
     <link rel="stylesheet" href="static/css/swiper-bundle.min.css" />
 
     <script src="static/js/swiper-bundle.min.js"></script>
+    
+    <!-- 多语言翻译功能样式和脚本 -->
+    <style>
+    /* Google Translate Styles */
+    #google_translate_element {
+      overflow: hidden;
+      border-radius: 0.25rem;
+      background: transparent;
+      display: inline-block;
+    }
+
+    .goog-te-gadget {
+      font-size: 0 !important;
+      font-family: inherit !important;
+    }
+
+    .goog-te-combo {
+      margin: 0 !important;
+      padding: 0.5rem !important;
+      font-size: 0.875rem !important;
+      line-height: 1.25rem !important;
+      outline: none !important;
+      border: 1px solid #dee2e6 !important;
+      border-radius: 0.25rem !important;
+      background: var(--white) !important;
+      color: var(--navy) !important;
+      cursor: pointer !important;
+      font-family: inherit !important;
+    }
+
+    .goog-te-combo:hover {
+      border-color: var(--bright-blue) !important;
+    }
+
+    .goog-te-combo:focus {
+      border-color: var(--bright-blue) !important;
+      box-shadow: 0 0 0 0.125rem rgba(40, 139, 255, 0.25) !important;
+    }
+
+    .goog-te-banner-frame {
+      display: none !important;
+    }
+
+    .goog-logo-link {
+      display: none !important;
+    }
+
+    .goog-te-gadget > span > a {
+      display: none !important;
+    }
+
+    .goog-te-gadget > span {
+      display: none !important;
+    }
+
+    .language-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .language-selector button {
+      background: transparent;
+      border: 1px solid #dee2e6;
+      border-radius: 0.25rem;
+      padding: 0.375rem 0.75rem;
+      font-size: 0.875rem;
+      color: var(--navy);
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+      font-family: inherit;
+    }
+
+    .language-selector button:hover {
+      border-color: var(--bright-blue);
+      color: var(--bright-blue);
+    }
+
+    .language-selector button.active {
+      background-color: var(--bright-blue);
+      border-color: var(--bright-blue);
+      color: var(--white);
+    }
+
+    @media screen and (max-width: 767px) {
+      .language-selector {
+        justify-content: center;
+        margin-top: 1rem;
+      }
+      
+      .language-selector button {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+      }
+    }
+    </style>
+    <script src="static/js/translation.js" type="text/javascript"></script>
   </head>
   <body data-barba="wrapper">
     <div data-w-id="d24e5ea8-78da-f5b7-6dab-ac39945b55b0" class="page-wrapper">
@@ -584,6 +681,14 @@ a,
                     >Deposit and Withdrawal</a
                   >
                 </div>
+                <!-- 语言选择器 -->
+                <div class="language-selector">
+                  <button onclick="changeLanguage('en')" id="lang-en" class="active">English</button>
+                  <button onclick="changeLanguage('zh-CN')" id="lang-zh-cn">简体中文</button>
+                  <button onclick="changeLanguage('zh-TW')" id="lang-zh-tw">繁體中文</button>
+                </div>
+                <!-- 隐藏的谷歌翻译元素 -->
+                <div id="google_translate_element" style="display: none;"></div>
                 <div class="menu_nav-addresses-wrapper">
                   <div
                     id="w-node-_11705a69-43a9-5c60-8297-21a89e405a5c-9e405a5c"
