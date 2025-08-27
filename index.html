@@ -1,7 +1,7 @@
-﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Wed Aug 13 2025 03:04:48 GMT+0000 (Coordinated Universal Time) -->
 <html
-  data-wf-domain="www.ardeapartners.com"
+  data-wf-domain="windsorheritagecapitals.com"
   data-wf-page="65ca745063bea8268ee67ce8"
   data-wf-site="64d3aa15d900b40ca745b0f8"
   lang="en">
@@ -182,8 +182,8 @@ function removeSourceByExtension(videoElement, extensionToRemove) {
 </script>
 <!-- end movie alterations -->
 
-<!-- [Attributes by Finsweet] Disable scrolling -->
-<script defer src="static/js/scrolldisable.js"></script>
+<!-- [Attributes by Finsweet] Disable scrolling - 已移除以修复滚动问题 -->
+<!-- <script defer src="static/js/scrolldisable.js"></script> -->
 <script src="static/js/lenis.min.js"></script> 
 <script>
       const lenis = new Lenis();
@@ -198,6 +198,25 @@ function raf(time) {
 }
 
       requestAnimationFrame(raf);
+
+      // 强制修复滚轮事件问题
+      // 直接接管所有滚动控制，绕过可能的阻止机制
+      document.addEventListener('wheel', function(e) {
+        window.scrollBy(0, e.deltaY);
+      }, { passive: true });
+      
+      // 同时支持触摸滚动
+      let touchStartY = 0;
+      document.addEventListener('touchstart', function(e) {
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      
+      document.addEventListener('touchmove', function(e) {
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchStartY - touchY;
+        window.scrollBy(0, deltaY);
+        touchStartY = touchY;
+      }, { passive: true });
 </script>
 <!-- Please keep this css code to improve the font quality-->
 <style>
@@ -468,7 +487,7 @@ function raf(time) {
   <body data-barba="wrapper">
     <!-- Google搜索结果网站名称结构化数据 -->
     <div itemscope itemtype="https://schema.org/WebSite">
-      <link itemprop="url" href="https://www.ardeapartners.com" />
+      <link itemprop="url" href="https://windsorheritagecapitals.com" />
       <meta itemprop="name" content="Windsor Heritage Capital Partners"/>
     </div>
     <div data-w-id="d24e5ea8-78da-f5b7-6dab-ac39945b55b0" class="page-wrapper">
@@ -988,9 +1007,6 @@ select {
                       style="font-size: 2.3rem">
                       Windsor Heritage Capital
                     </h2>
-                    <p class="text-size-large is-emblem_text-wrapper">
-                      (ahr-DAY-uh)
-                    </p>
                   </div>
                 </div>
                 <blockquote class="emblem_quote">
@@ -1856,35 +1872,6 @@ select {
                   </div>
                 </div>
 
-                <div class="button-group is-soc is-footer_col">
-                  <a
-                    href="https://www.linkedin.com/company/ardea-partners/"
-                    target="_blank"
-                    class="soc-button w-inline-block">
-                    <div class="icon-embed-xsmall is-footer w-embed">
-                      <svg
-                        height="100%"
-                        viewbox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_1725_1664)">
-                          <path
-                            d="M22.2234 0H1.77187C0.792187 0 0 0.773438 0 1.72969V22.2656C0 23.2219 0.792187 24 1.77187 24H22.2234C23.2031 24 24 23.2219 24 22.2703V1.72969C24 0.773438 23.2031 0 22.2234 0ZM7.12031 20.4516H3.55781V8.99531H7.12031V20.4516ZM5.33906 7.43438C4.19531 7.43438 3.27188 6.51094 3.27188 5.37187C3.27188 4.23281 4.19531 3.30937 5.33906 3.30937C6.47813 3.30937 7.40156 4.23281 7.40156 5.37187C7.40156 6.50625 6.47813 7.43438 5.33906 7.43438ZM20.4516 20.4516H16.8937V14.8828C16.8937 13.5562 16.8703 11.8453 15.0422 11.8453C13.1906 11.8453 12.9094 13.2937 12.9094 14.7891V20.4516H9.35625V8.99531H12.7687V10.5609H12.8156C13.2891 9.66094 14.4516 8.70938 16.1813 8.70938C19.7859 8.70938 20.4516 11.0813 20.4516 14.1656V20.4516Z"
-                            fill="currentcolor"></path>
-</g>
-<defs>
-<clippath id="clip0_1725_1664">
-                            <rect
-                              width="24"
-                              height="24"
-                              fill="currentcolor"></rect>
-</clippath>
-</defs>
-                      </svg>
-                    </div>
-                  </a>
-                </div>
-
                 <p class="text-size-tiny">
                   Windsor Heritage Capital Partners LP, Member FINRA / SIPC<br />Learn
                   more about Windsor Heritage Capital Partners LP at
@@ -2747,9 +2734,6 @@ const LOCAL_TRANSLATIONS = {
         'Strategic Advice. Trust & Partnership.': '战略建议。信任与合作伙伴关系。',
         'Our Locations': '我们的地址',
         'Contact Us': '联系我们',
-        'English': '英文',
-        '简体中文': '简体中文',
-        '繁體中文': '繁体中文'
     },
     'zh-TW': {
         'About': '關於',
@@ -2759,9 +2743,6 @@ const LOCAL_TRANSLATIONS = {
         'Strategic Advice. Trust & Partnership.': '戰略建議。信任與合作夥伴關係。',
         'Our Locations': '我們的地址',
         'Contact Us': '聯繫我們',
-        'English': '英文',
-        '简体中文': '簡體中文',
-        '繁體中文': '繁體中文'
     }
 };
 
@@ -2878,5 +2859,235 @@ window.addEventListener('load', function() {
     <a data-href="https://smalltool.github.io/" style="display: none"
       >仿站工具</a
     >
+    
+    <!-- 全局客服组件 -->
+    <div id="global-customer-service" class="customer-service-widget">
+      <div class="customer-service-btn" onclick="toggleCustomerService()">
+        <img src="static/image/lxwm.jpg" alt="Contact Us" class="customer-service-icon">
+        <span class="customer-service-text">Contact Us</span>
+      </div>
+      <div id="customer-service-modal" class="customer-service-modal" style="display: none;">
+        <div class="customer-service-modal-content">
+          <div class="customer-service-header">
+            <span class="customer-service-title">線上客服</span>
+            <span class="customer-service-close" onclick="toggleCustomerService()">&times;</span>
+          </div>
+          <iframe 
+            id="customer-service-iframe"
+            src="https://client.aquacs.net/?projectId=68ac2a22e061c12eda305e94&tpl=zh-tw" 
+            frameborder="0" 
+            allowfullscreen
+            class="customer-service-iframe">
+          </iframe>
+        </div>
+      </div>
+    </div>
+    
+    <style>
+    /* 客服组件样式 */
+    .customer-service-widget {
+      position: fixed;
+      bottom: 200px;
+      right: 30px;
+      z-index: 9999;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    .customer-service-btn {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 2px solid #e5e7eb;
+      border-radius: 50px;
+      padding: 12px 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      user-select: none;
+      max-width: 180px;
+    }
+    
+    .customer-service-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      border-color: #3b82f6;
+    }
+    
+    .customer-service-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+    
+    .customer-service-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      white-space: nowrap;
+    }
+    
+    .customer-service-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .customer-service-modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 800px;
+      height: 80vh;
+      max-height: 600px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .customer-service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+    
+    .customer-service-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+    }
+    
+    .customer-service-close {
+      font-size: 24px;
+      color: #6b7280;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    
+    .customer-service-close:hover {
+      color: #374151;
+    }
+    
+    .customer-service-iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .customer-service-widget {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .customer-service-btn {
+        padding: 10px 16px;
+        max-width: 160px;
+      }
+      
+      .customer-service-icon {
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+      }
+      
+      .customer-service-text {
+        font-size: 13px;
+      }
+      
+      .customer-service-modal {
+        padding: 10px;
+      }
+      
+      .customer-service-modal-content {
+        height: 90vh;
+        max-height: none;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .customer-service-btn {
+        padding: 8px 12px;
+        max-width: 140px;
+      }
+      
+      .customer-service-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 6px;
+      }
+      
+      .customer-service-text {
+        font-size: 12px;
+      }
+    }
+    </style>
+    
+    <script>
+    // 客服组件功能脚本
+    function toggleCustomerService() {
+      const modal = document.getElementById('customer-service-modal');
+      const iframe = document.getElementById('customer-service-iframe');
+      
+      if (modal.style.display === 'none' || modal.style.display === '') {
+        // 显示客服窗口
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // 防止背景滚动
+        
+        // 重新加载iframe以确保每次都是最新状态
+        iframe.src = iframe.src;
+      } else {
+        // 隐藏客服窗口
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // 恢复背景滚动，使用空字符串重置为默认值
+      }
+    }
+    
+    // 点击模态框背景关闭窗口
+    document.addEventListener('DOMContentLoaded', function() {
+      // 确保页面初始化时滚动是正常的
+      document.body.style.overflow = '';
+      
+      const modal = document.getElementById('customer-service-modal');
+      if (modal) {
+        // 确保模态框初始状态是隐藏的
+        modal.style.display = 'none';
+        
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            toggleCustomerService();
+          }
+        });
+      }
+      
+      // ESC键关闭窗口
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const modal = document.getElementById('customer-service-modal');
+          if (modal && modal.style.display !== 'none') {
+            toggleCustomerService();
+          }
+        }
+      });
+    });
+    </script>
+    
   </body>
 </html>

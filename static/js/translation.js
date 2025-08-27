@@ -34,9 +34,6 @@ const LOCAL_TRANSLATIONS = {
         'Strategic Advice. Trust & Partnership.': '战略建议。信任与合作伙伴关系。',
         'Our Locations': '我们的地址',
         'Contact Us': '联系我们',
-        'English': '英文',
-        '简体中文': '简体中文',
-        '繁體中文': '繁体中文',
         'Team': '团队',
         'Transactions': '交易',
         'Home': '首页'
@@ -49,9 +46,6 @@ const LOCAL_TRANSLATIONS = {
         'Strategic Advice. Trust & Partnership.': '戰略建議。信任與合作夥伴關係。',
         'Our Locations': '我們的地址',
         'Contact Us': '聯繫我們',
-        'English': '英文',
-        '简体中文': '簡體中文',
-        '繁體中文': '繁體中文',
         'Team': '團隊',
         'Transactions': '交易',
         'Home': '首頁'
@@ -274,13 +268,31 @@ function applyLocalTranslation(langCode) {
         }
     });
     
-    // 翻译语言选择器按钮
-    document.querySelectorAll('.language-selector button').forEach(btn => {
-        const text = btn.textContent.trim();
+    // 翻译语言选择器按钮 - 跳过，保持原始语言标识
+    // document.querySelectorAll('.language-selector button').forEach(btn => {
+    //     const text = btn.textContent.trim();
+    //     if (translations[text]) {
+    //         btn.textContent = translations[text];
+    //     }
+    // });
+    
+    // 翻译客服按钮
+    const customerServiceText = document.querySelector('.customer-service-text');
+    if (customerServiceText) {
+        const text = customerServiceText.textContent.trim();
         if (translations[text]) {
-            btn.textContent = translations[text];
+            customerServiceText.textContent = translations[text];
         }
-    });
+    }
+    
+    // 翻译客服按钮的alt属性
+    const customerServiceIcon = document.querySelector('.customer-service-icon');
+    if (customerServiceIcon) {
+        const altText = customerServiceIcon.getAttribute('alt');
+        if (translations[altText]) {
+            customerServiceIcon.setAttribute('alt', translations[altText]);
+        }
+    }
     
     // 显示备用翻译提示
     showLocalTranslationNotice(langCode);
