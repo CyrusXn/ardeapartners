@@ -1,0 +1,1 @@
+﻿"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[999],{40999:(e,r,a)=>{a.r(r),a.d(r,{SeparatorConnected:()=>n});var s=a(37876),t=a(20730),l=a(20330);let n=e=>{let{isGray:r,hasMargin:a}=e;return(0,s.jsx)(t.mc,{variant:t.Yr.FullFromTablet,children:(0,s.jsx)(l.$p,{isGray:r,hasMargin:a})})}}}]);

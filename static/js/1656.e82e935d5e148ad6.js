@@ -1,0 +1,1 @@
+﻿"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[1656],{21656:(e,s,u)=>{u.r(s),u.d(s,{default:()=>d});var l=u(37876),r=u(22899),t=u(20730);let d=e=>{var s;let{videoPoster:u,video:d,isRounded:a}=e;return(0,l.jsx)(t.V7,{poster:null!=(s=(0,r.$R)(u))?s:void 0,isRounded:a,video:d})}}}]);

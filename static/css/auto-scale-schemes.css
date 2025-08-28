@@ -1,0 +1,9 @@
+﻿@media (max-width: 992px) {
+    .auto-scale-resized-v2 {
+        width: 200% !important;
+        max-width: inherit !important;
+    }
+    .resize-v2-wrapper {
+        overflow-x: auto;
+    }
+}
