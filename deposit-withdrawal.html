@@ -2,42 +2,36 @@
 <!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Wed Aug 13 2025 03:04:48 GMT+0000 (Coordinated Universal Time) -->
 <html
   data-wf-domain="windsorheritagecapitals.com"
-  data-wf-page="65ca745063bea8268ee67ce8"
+  data-wf-page="65ca745063bea8268ee67d2c"
   data-wf-site="64d3aa15d900b40ca745b0f8"
-  lang="en">
+  lang="en"
+>
   <head>
     <meta charset="utf-8" />
     <title>Deposit and Withdrawal | Windsor Heritage Capital Partners</title>
     <meta
-      content="Professional deposit and withdrawal services for institutional and individual clients at Windsor Heritage Capital Partners. Secure transactions, 24/7 support, multi-currency options."
-      name="description" />
-    <meta
-      name="keywords"
-      content="deposit services, withdrawal services, financial transactions, investment banking, Windsor Heritage Capital, institutional banking, secure deposits, financial services" />
-    <meta content="Deposit and Withdrawal | Windsor Heritage Capital Partners" property="og:title" />
-    <meta
-      content="Deposit and Withdrawal services at Windsor Heritage Capital Partners"
-      property="og:description" />
+      content="Deposit and Withdrawal | Windsor Heritage Capital Partners"
+      property="og:title"
+    />
     <meta
       content="https://cdn.prod.website-files.com/64c975e746978fd11afd576a/64cac6792e1cd810099735aa_open%20graph%201200x630.jpg"
-      property="og:image" />
+      property="og:image"
+    />
     <meta
       content="Deposit and Withdrawal | Windsor Heritage Capital Partners"
-      property="twitter:title" />
-    <meta
-      content="Deposit and Withdrawal services at Windsor Heritage Capital Partners"
-      property="twitter:description" />
+      property="twitter:title"
+    />
     <meta
       content="https://cdn.prod.website-files.com/64c975e746978fd11afd576a/64cac6792e1cd810099735aa_open%20graph%201200x630.jpg"
-      property="twitter:image" />
-    <meta property="og:type" content="website" />
-    <meta content="summary_large_image" name="twitter:card" />
+      property="twitter:image"
+    />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Webflow" name="generator" />
     <link
       href="static/css/ardea-partners.webflow.shared.4dc4dd3ef.css"
       rel="stylesheet"
-      type="text/css" />
+      type="text/css"
+    />
     <style>
       @media (min-width: 992px) {
         html.w-mod-js:not(.w-mod-ix)
@@ -61,34 +55,15 @@
     <link
       href="https://fonts.gstatic.com"
       rel="preconnect"
-      crossorigin="anonymous" />
+      crossorigin="anonymous"
+    />
     <script src="static/js/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">
-      // Improved WebFont loading with error handling and fallback
       WebFont.load({
         google: {
           families: [
             "Merriweather:300,300italic,400,400italic,700,700italic,900,900italic",
           ],
-        },
-        timeout: 3000, // 3 second timeout
-        loading: function () {
-          console.log("Loading fonts...");
-        },
-        active: function () {
-          console.log("Fonts loaded successfully");
-        },
-        inactive: function () {
-          console.warn("Font loading timed out, using fallback fonts");
-        },
-        fontloading: function (familyName, fvd) {
-          console.log("Loading font:", familyName);
-        },
-        fontactive: function (familyName, fvd) {
-          console.log("Font active:", familyName);
-        },
-        fontinactive: function (familyName, fvd) {
-          console.warn("Font inactive:", familyName);
         },
       });
     </script>
@@ -106,10 +81,12 @@
     <link
       href="https://cdn.prod.website-files.com/64c975e746978fd11afd576a/64c975e746978fd11afd5786_favicon%2032x32_1x.png"
       rel="shortcut icon"
-      type="image/x-icon" />
+      type="image/x-icon"
+    />
     <link
       href="https://cdn.prod.website-files.com/64c975e746978fd11afd576a/64c975e746978fd11afd5787_webclip%20256x256_1x.png"
-      rel="apple-touch-icon" />
+      rel="apple-touch-icon"
+    />
     <!-- OptanonConsentNoticeStart - Disabled for local development -->
     <!--
 <script src="static/js/otSDKStub.js" data-language="en" type="text/javascript" data-domain-script="dc6d5199-bd0a-4032-a58e-ba4e3111748e"></script>
@@ -159,10 +136,7 @@
     <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
-        w[l].push({
-          "gtm.start": new Date().getTime(),
-          event: "gtm.js",
-        });
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
         var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
           dl = l != "dataLayer" ? "&l=" + l : "";
@@ -172,8 +146,82 @@
       })(window, document, "script", "dataLayer", "GTM-N2WF8F7D");
     </script>
     <!-- End Google Tag Manager -->
-    
+    <!-- movie settings -->
+    <script>
+      function removeSourceByExtension(videoElement, extensionToRemove) {
+        if (videoElement && videoElement.tagName === "VIDEO") {
+          const sourceTags = videoElement.getElementsByTagName("source");
+          for (let i = 0; i < sourceTags.length; i++) {
+            const sourceTag = sourceTags[i];
+            const sourceSrc = sourceTag.getAttribute("src");
+            if (sourceSrc && sourceSrc.endsWith(extensionToRemove)) {
+              videoElement.removeChild(sourceTag);
+              break; // Remove only the first matching source tag
+            }
+          }
+        }
+      }
+      window.addEventListener("DOMContentLoaded", function () {
+        setTimeout(() => {
+          const videos = document.getElementsByTagName("video");
+          //videos.forEach(video => {
+          for (var counter = 0; counter < videos.length; counter++) {
+            removeSourceByExtension(videos[counter], ".webm");
+          }
+          //});
+        }, 300);
+      });
+    </script>
+    <!-- end movie alterations -->
+
+    <!-- [Attributes by Finsweet] Disable scrolling -->
+    <script defer src="static/js/scrolldisable.js"></script>
+    <script src="static/js/lenis.min.js"></script>
+    <script>
+      const lenis = new Lenis();
+
+      lenis.on("scroll", (e) => {
+        // console.log(e);
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    </script>
+    <!-- Please keep this css code to improve the font quality-->
+    <style>
+      html.lenis {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto;
+      }
+
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+
+      .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+      }
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -o-font-smoothing: antialiased;
+      }
+    </style>
+
     <!-- 多语言翻译功能样式和脚本 -->
+    <link href="static/css/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <!-- 谷歌翻译样式 - 隐藏不需要的UI元素并美化 -->
     <style>
     /* Google Translate Styles */
     #google_translate_element {
@@ -211,14 +259,17 @@
       box-shadow: 0 0 0 0.125rem rgba(40, 139, 255, 0.25) !important;
     }
 
+    /* 隐藏谷歌翻译的顶部横幅 */
     .goog-te-banner-frame {
       display: none !important;
     }
 
+    /* 隐藏谷歌logo链接 */
     .goog-logo-link {
       display: none !important;
     }
 
+    /* 隐藏"由谷歌翻译提供支持"文本 */
     .goog-te-gadget > span > a {
       display: none !important;
     }
@@ -227,6 +278,7 @@
       display: none !important;
     }
 
+    /* 自定义语言选择器样式 */
     .language-selector {
       display: flex;
       align-items: center;
@@ -269,8 +321,25 @@
     }
     </style>
     <script src="static/js/translation.js" type="text/javascript"></script>
-  </head>
 
+    <!-- Keep existing CSS files for page content -->
+    <link
+      rel="stylesheet"
+      crossorigin=""
+      href="static/css/index-5dEwWfwy.css"
+    />
+    <link
+      rel="stylesheet"
+      crossorigin=""
+      href="static/css/BrandList-BPRg8Eh_.css"
+    />
+    <link rel="stylesheet" crossorigin="" href="static/css/home-Du-8jvjQ.css" />
+    <link
+      rel="stylesheet"
+      crossorigin=""
+      href="static/css/fundSecurity-Dtk8Kbxb.css"
+    />
+  </head>
   <body data-barba="wrapper">
     <div data-w-id="d24e5ea8-78da-f5b7-6dab-ac39945b55b0" class="page-wrapper">
       <div class="global-styles w-embed">
@@ -278,19 +347,16 @@
           html {
             font-size: 1rem;
           }
-
           @media screen and (max-width: 1920px) {
             html {
               font-size: calc(-0.02343749999999989rem + 0.8593749999999999vw);
             }
           }
-
           @media screen and (max-width: 992px) {
             html {
               font-size: calc(-0.01105555555555543rem + 0.8444444444444442vw);
             }
           }
-
           @media screen and (max-width: 767px) {
             html {
               font-size: calc(-0.0025293733681462137rem + 4.046997389033942vw);
@@ -319,9 +385,194 @@
             margin-bottom: 0 !important;
           }
 
-          /* Additional styles... */
+          /* Prevent all click and hover interaction with an element */
+          .pointer-events-off {
+            pointer-events: none;
+          }
+
+          /* Enables all click and hover interaction with an element */
+          .pointer-events-on {
+            pointer-events: auto;
+          }
+
+          /* Create a class of .div-square which maintains a 1:1 dimension of a div */
+          .div-square::after {
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+          }
+
+          /* Make sure containers never lose their center alignment */
+          .container-medium,
+          .container-small,
+          .container-large {
+            margin-right: auto !important;
+            margin-left: auto !important;
+          }
+
+          /* Apply "..." after 3 lines of text */
+          .text-style-3lines {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+          }
+
+          /* Apply "..." after 2 lines of text */
+          .text-style-2lines {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+
+          /* Adds inline flex display */
+          .display-inlineflex {
+            display: inline-flex;
+          }
+
+          /* These classes are never overwritten */
+          .hide {
+            display: none !important;
+          }
+
+          @media screen and (max-width: 991px) {
+            .hide,
+            .hide-tablet {
+              display: none !important;
+            }
+          }
+          @media screen and (max-width: 767px) {
+            .hide-mobile-landscape {
+              display: none !important;
+            }
+          }
+          @media screen and (max-width: 479px) {
+            .hide-mobile {
+              display: none !important;
+            }
+          }
+
+          .margin-0 {
+            margin: 0rem !important;
+          }
+
+          .padding-0 {
+            padding: 0rem !important;
+          }
+
+          .spacing-clean {
+            padding: 0rem !important;
+            margin: 0rem !important;
+          }
+
+          .margin-top {
+            margin-right: 0rem !important;
+            margin-bottom: 0rem !important;
+            margin-left: 0rem !important;
+          }
+
+          .padding-top {
+            padding-right: 0rem !important;
+            padding-bottom: 0rem !important;
+            padding-left: 0rem !important;
+          }
+
+          .margin-right {
+            margin-top: 0rem !important;
+            margin-bottom: 0rem !important;
+            margin-left: 0rem !important;
+          }
+
+          .padding-right {
+            padding-top: 0rem !important;
+            padding-bottom: 0rem !important;
+            padding-left: 0rem !important;
+          }
+
+          .margin-bottom {
+            margin-top: 0rem !important;
+            margin-right: 0rem !important;
+            margin-left: 0rem !important;
+          }
+
+          .padding-bottom {
+            padding-top: 0rem !important;
+            padding-right: 0rem !important;
+            padding-left: 0rem !important;
+          }
+
+          .margin-left {
+            margin-top: 0rem !important;
+            margin-right: 0rem !important;
+            margin-bottom: 0rem !important;
+          }
+
+          .padding-left {
+            padding-top: 0rem !important;
+            padding-right: 0rem !important;
+            padding-bottom: 0rem !important;
+          }
+
+          .margin-horizontal {
+            margin-top: 0rem !important;
+            margin-bottom: 0rem !important;
+          }
+
+          .padding-horizontal {
+            padding-top: 0rem !important;
+            padding-bottom: 0rem !important;
+          }
+
+          .margin-vertical {
+            margin-right: 0rem !important;
+            margin-left: 0rem !important;
+          }
+
+          .padding-vertical {
+            padding-right: 0rem !important;
+            padding-left: 0rem !important;
+          }
+
+          /* Apply "..." at 100% width */
+          .truncate-width {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          /* Removes native scrollbar */
+          .no-scrollbar {
+            -ms-overflow-style: none;
+            overflow: -moz-scrollbars-none;
+          }
+
+          .no-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+
+          select {
+            appearance: none;
+          }
+
+          .swiper-button-disabled {
+            pointer-events: none;
+          }
+
+          .swiper-pagination-bullet {
+            border-radius: 0.5rem !important;
+            border: 1px solid var(--navy, #15273c) !important;
+            background: none !important;
+          }
+
+          .swiper-pagination-bullet.swiper-pagination-bullet-active {
+            border-radius: 0.5rem !important;
+            background: var(--navy, #15273c) !important;
+          }
+
           .menu_nav-item {
             text-decoration: none;
+
             background-image: linear-gradient(currentColor, currentColor);
             background-position: 0% 100%;
             background-repeat: no-repeat;
@@ -337,6 +588,89 @@
           .menu_nav-item.w--current {
             background-size: 100% 1px;
             pointer-events: none;
+          }
+
+          .button:hover .button_arrow {
+            color: #268bff;
+          }
+
+          .card-features_item:hover .button_arrow {
+            color: #15273c;
+          }
+
+          .card-features_item:hover .card-features_item-svg {
+            color: #15273c;
+          }
+
+          .card-features_item:hover .button {
+            color: #15273c;
+          }
+
+          .footer_locations-item .link-capsed {
+            text-decoration: none;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 0% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 1px;
+            transition: background-size 0.3s;
+          }
+
+          .footer_locations-item:hover .link-capsed {
+            background-size: 100% 1px;
+          }
+
+          .footer_locations-item:focus .link-capsed {
+            background-size: 100% 1px;
+          }
+
+          .text-size-small.is-link {
+            text-decoration: none;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 0% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 1px;
+            transition: background-size 0.3s;
+          }
+
+          .text-size-small.is-link:hover,
+          .text-size-small.is-link:focus {
+            background-size: 100% 1px;
+          }
+
+          .text-style-link.link-capsed {
+            text-decoration: none;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 0% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 1px;
+            transition: background-size 0.3s;
+          }
+
+          .text-style-link.link-capsed:hover,
+          .text-style-link.link-capsed:focus {
+            background-size: 100% 1px;
+          }
+
+          .exp-rich em {
+            text-align: right;
+          }
+
+          .team-list_item-popup-screen-close-wrapper {
+            cursor: default;
+          }
+
+          @media screen and (min-width: 992px) {
+            .swiper-pagination {
+              /**position: static !important;**/
+              row-gap: 20px;
+            }
+            .swiper-pagination-bullets.swiper-pagination-horizontal {
+              top: 6rem;
+              bottom: auto;
+              left: auto;
+              right: 0%;
+              width: auto;
+            }
           }
 
           /* Contact Form Styles */
@@ -458,7 +792,7 @@
             text-decoration: underline;
           }
 
-          @media screen and (max-width: 991px) {
+          @media screen and (max-width: 767px) {
             .contact-section_wrapper {
               grid-template-columns: 1fr;
               grid-column-gap: 0;
@@ -474,52 +808,31 @@
               width: 100%;
             }
           }
-
-          @media screen and (max-width: 767px) {
-            .contact-section_wrapper {
-              grid-template-columns: 1fr;
-              grid-column-gap: 0;
-              grid-row-gap: 1.5rem;
-            }
-            
-            .contact-description {
-              font-size: 0.8rem;
-              margin-bottom: 1.5rem;
-            }
-            
-            .contact-form_grid {
-              grid-template-columns: 1fr;
-              grid-column-gap: 0;
-            }
-            
-            .contact-form_submit-button {
-              width: 100%;
-              padding: 0.75rem 1.5rem;
-            }
-          }
         </style>
       </div>
-      
       <nav class="menu_component">
         <div class="container-large">
           <div class="padding-global">
             <div class="menu_inner">
-              <a href="index.html" class="menu_logo-link w-inline-block">
-                <div class="menu_logo-link_svg w-embed">
+              <a href="index.html" class="menu_logo-link w-inline-block"
+                ><div class="menu_logo-link_svg w-embed">
                   <img
                     src="static/image/logo.png"
                     alt="Windsor Heritage Capital"
                     height="46"
-                    style="height: 100%; width: auto" />
-                </div>
-              </a>
+                    style="height: 100%; width: auto"
+                  /></div
+              ></a>
               <div class="menu_nav">
                 <div class="menu_nav-inner">
-                  <a href="about.html" class="menu_nav-item">About</a>
-                  <a href="culture.html" class="menu_nav-item">Culture</a>
-                  <a href="careers.html" class="menu_nav-item">Careers</a>
-                  <a href="" aria-current="page" class="menu_nav-item w--current">Deposit and Withdrawal</a>
-                  <a href="intelligent-order-routing.html" class="menu_nav-item">Intelligent Order Routing</a>
+                  <a
+                    href="about.html"
+                    class="menu_nav-item"
+                    >About</a
+                  ><a href="culture.html" class="menu_nav-item">Culture</a
+                  ><a href="careers.html" class="menu_nav-item">Careers</a
+                  ><a href="deposit-withdrawal.html" aria-current="page" class="menu_nav-item w--current">Deposit and Withdrawal</a
+                  ><a href="intelligent-order-routing.html" class="menu_nav-item">Intelligent Order Routing</a>
                 </div>
                 <!-- 语言选择器 -->
                 <div class="language-selector">
@@ -532,7 +845,8 @@
                 <div class="menu_nav-addresses-wrapper">
                   <div
                     id="w-node-_11705a69-43a9-5c60-8297-21a89e405a5c-9e405a5c"
-                    class="footer_contacts-item">
+                    class="footer_contacts-item"
+                  >
                     <p class="text-size-small">140 Broadway, 47th Floor, New York, NY 10005, USA</p>
                     <a
                       href="mailto:ContactUS@ardeapartners.com"
@@ -544,7 +858,8 @@
                   </div>
                   <div
                     id="w-node-d72a7dc6-2bb6-0bc3-8fa9-bb4b09619d4a-09619d4a"
-                    class="footer_contacts-item">
+                    class="footer_contacts-item"
+                  >
                     <p class="text-size-small">London Office</p>
                     <a
                       href="mailto:ContactUK@ardeapartners.com"
@@ -567,179 +882,181 @@
           </div>
         </div>
       </nav>
-      
-      <main data-barba-namespace="deposit-withdrawal" data-barba="container" class="main-wrapper">
-        <!-- Fund Security Hero Section -->
-        <section class="section_hero" style="background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #3182ce 100%); position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.15) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(169, 178, 228, 0.1) 0%, transparent 50%); opacity: 0.7;"></div>
-          <div class="container-large" style="position: relative; z-index: 2;">
-            <div class="padding-global">
-              <div class="_2cols_inner is-hero" style="text-align: center;">
-                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
-                  <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1.5rem;">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 2L3 7V17L12 22L21 17V7L12 2Z" stroke="#4299e1" stroke-width="2" fill="rgba(66, 153, 225, 0.2)"/>
-                      <path d="M9 12L11 14L16 9" stroke="#4299e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+      <main data-barba-namespace="" data-barba="container" class="main-wrapper">
+
+        <!-- 原始页面内容开始 -->
+        <div id="app">
+          <section class="block block-1">
+            <div class="content-box">
+              <div class="text-box">
+                <div class="t1" data-i18n="fund-security-title">Fund security</div>
+                <div class="d1" data-i18n="fund-security-desc">
+                  Experience safe, secure and transparent trading with free
+                  financing for traders in most countries.
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block block-2">
+            <div class="content-box">
+              <div class="group-1">
+                <h3 class="block-title" data-i18n="funding-methods-title">
+                  Funding and withdrawal methods
+                </h3>
+                <div class="desc text-1" data-i18n="funding-methods-desc">
+                  At Eagle Global we offer a wide range of funding and withdrawal
+                  options. And that's not all. We also ensure that you have your own
+                  secure client portal, where you can access all your funding and
+                  withdrawal needs safely and securely.
+                </div>
+                <div class="title text-2" data-i18n="we-accept-title"></div>
+                <div class="accept-box">
+                  <div class="item">
+                    <img src="static/image/img_1-Iao8tX2T.png" alt="" />
                   </div>
-                  <h1 class="hero-home_title" style="color: white; margin: 0;">Fund Security</h1>
+                  <div class="item">
+                    <img src="static/image/img_2-C6k9HBzW.png" alt="" />
+                  </div>
                 </div>
-                <div class="_2cols_cta-wrapper">
-                  <p class="_2cols_cta-title is-hero-home" style="color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto;">
-                    Experience safe, secure and transparent trading with free financing for traders in most countries.
-                  </p>
+                <div class="title text-3" data-i18n="online-wallet-title">
+                  Online wallet options such as:
+                </div>
+                <div class="desc text-4" data-i18n="bank-transfer-note">
+                  Please note: that any payment made through bank wire transfer
+                  needs to be posted to the bank for financing guarantee. Once the
+                  bank receives the funds, it will immediately record them. This
+                  way, the funds in your account will have financing functions
+                </div>
+                <div class="brand-list">
+                  <div class="brand-item">
+                    <img
+                      src="static/image/brand-1-Vg4xHkIM.png"
+                      alt=""
+                      style="max-width: 154px"
+                    />
+                  </div>
+                  <div class="brand-item">
+                    <img
+                      src="static/image/brand-2-DJU10ZDX.png"
+                      alt=""
+                      style="max-width: 105px"
+                    />
+                  </div>
+                  <div class="brand-item">
+                    <img
+                      src="static/image/brand-3-6QzeJ7N7.png"
+                      alt=""
+                      style="max-width: 150px"
+                    />
+                  </div>
+                  <div class="brand-item">
+                    <img
+                      src="static/image/brand-4-DR7wUG1t.png"
+                      alt=""
+                      style="max-width: 147px"
+                    />
+                  </div>
+                  <div class="brand-item">
+                    <img
+                      src="static/image/brand-5-38e-pVjy.png"
+                      alt=""
+                      style="max-width: 167px"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Funding and Withdrawal Methods Section -->
-        <section class="section_text-and-visual" style="padding-top: 4rem; padding-bottom: 2rem;">
-          <div class="container-large">
-            <div class="padding-global">
-              <div style="text-align: center; margin-bottom: 3rem;">
-                <h2 class="heading-style-h1" style="margin-bottom: 1rem;">Funding and withdrawal methods</h2>
-                <div class="text-divider-horizontal background-color-bright-blue" style="margin: 0 auto 1.5rem;"></div>
-                <p style="max-width: 700px; margin: 0 auto; color: #6b7280;">
-                  At FY-VIEW we offer a wide range of funding and withdrawal options. And that's not all. We also ensure that you have your own secure client portal, where you can access all your funding and withdrawal needs safely and securely.
-                </p>
+              <h3 class="block-title" data-i18n="important-info-title">
+                Methods Important Information
+              </h3>
+              <div class="info-list-wrap">
+                <div class="info-item" data-i18n="withdrawal-time-info">
+                  1、After receiving the withdrawal request form, it will be
+                  processed within 48 hours. Usually, it is posted on the same day!
+                </div>
+                <div class="info-item" data-i18n="same-name-account-info">
+                  2、Due to third-party trading rules, funds can only be refunded to
+                  a bank account with the same name (or joint name) as your Eagle
+                  Global trading account.
+                </div>
+                <div class="info-item" data-i18n="transfer-fees-info">
+                  3、Any international telegraphic transfer (TT) fees charged by our
+                  banking institutions are passed on to customers.
+                </div>
+                <div class="info-item" data-i18n="recharge-time-info">
+                  4、Recharge through bank wire transfer usually takes about 10
+                  minutes for the funds to reach your account.
+                </div>
+                <div class="info-item" data-i18n="unforeseen-circumstances-info">
+                  5、Please note that in the event of any unforeseen circumstances,
+                  withdrawals may take longer.
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Payment Methods Cards Section -->
-        <section class="section_card-features" style="padding-top: 2rem; padding-bottom: 2rem;">
-          <div class="container-large">
-            <div class="padding-global">
-              <div style="text-align: center; margin-bottom: 3rem;">
-                <h3 class="text-size-large" style="margin-bottom: 2rem;">We accept:</h3>
-                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                  <div style="background: #2d3748; color: white; padding: 2rem; border-radius: 8px; min-width: 280px; text-align: left;">
-                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                      <div style="width: 40px; height: 40px; background: #4299e1; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                          <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"/>
-                        </svg>
-                      </div>
-                      <div>
-                        <h4 style="margin: 0; font-size: 1.1rem; font-weight: 600;">WIRE TRANSFER</h4>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Bank wire transfer</p>
-                      </div>
+              <h3 class="block-title" data-i18n="faq-title">
+                Frequently Asked Questions
+              </h3>
+              <div class="faq-group">
+                <div class="faq-item">
+                  <div class="ask">
+                    <div class="icon">
+                      <img
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAEOUlEQVR4Xu1aPW/UQBBNQUOBhCgooCASSFCkSJOChiAaShA/APgHSZM6oUeCjvKQ6ElFnQraE32QmyixfZdcPpAiRZGGnbWNnNmZtX3edXzJPulJibTnmXk3Mzu757m5gICAgICAKwGIotuwtzdfJl1zZZEH/xzS9JPiluIEkgQEDhU31ZqVKydSSQSbAFUcqs+/m2lxciG2mODaMFLP3cBso/Z6C10aafqZCcYlI8wYart3UE4uamfNAPxQlSL1oTdQqfy+QZ8YQhxjX1nRvWE0WtbEv5NkHbCh1hd22LveosUwHaWMAINtUP9apCQZMM+ixN4yTz9/KaghRut61zNKtTBRE7G9QDtqKxPcbh06mQsTGXYKxvEW/Uxn0LuJ3bkV+hkXyL8EHNxMm8jd3VX6mU5g3VpblkgdKDtfDbsFd3YW6XqvyFPXdCTjOl3vAzCZ4LzDZ0rXpQPZtmg6go0P4CZd7wvWHqYmZbreCyzZEcPp6VslyMsSnykuKT5WvKt4gz6vLVQ2rDK+dJcl6hsZGMaRh4cfiRgSF1Ec+tw2AOnM1EWWCCkaM4FXEbPnPn3+NNAHSdMn/6O9aLh+dnBEYVr3HeGLiug6p9CDlmkUmN4xDR9Re02gxvx1wy/kZPKArnUGoVb/MMFNyyfUZl2I2etzJmLTcn//OxNYGz6FKXYjPZdQ3zL6m4sYY9g/vjBBteVUkybwR4kBXecE4vxxdPSBCcgFG5cPW9JxvEnXOYEoyPHxGhOMKzaaVwRB/AxooiD+MgT5Ahr0k34I0m4GqcMF6osEQRA/JYMwjCEPDr4xQbjmHeoLB3YX9DmtAtfFx+OfTACuWZklYgZ7uqjSAO5eM01PmAB80NpLQLrbHY2W6VpnAPzZgBpE+t1pClpHcJBO4Q7vdA2Iael+WuW4RP0pIPrla4cpg+3kWDbn52+YIFxS3IKVDxuGT5lf/s4xBcRT5Xi8yQThmrcMf2w/TXTx41V+uWtub0j/veSe4Y/UO3ydYTiIWZKmsefSeXjBD+k+FdlFdhTIj9qR4UQmyjYTiCv+n0cge9PAtJ/R35FfgjL6mnEkIw5rfjJFC6LFkMrW97WhDTgWMw5lxPI5O3NxtVjmgi4TWYxuS4XC+utZIYqrwx9m3Gj0w7BB2cVWa4N12ysLc3KyYQRZhygEHiCT5K/xXIkzIUrmaKyn2qrtGUXAzErTX9BEiIu2eiAKN8XaiDtSmv4ucRumFYDjZYuCEGcU94wAdxvplFuwF6Jk2SI32zbMdpgL76rNhCgI7WjTMpKIQuCbi8K2OjOiIHRqZ5dLkeFoFdURHvAepsa9xkyJUkCX03j8CrL3UQc6gwri/8X7q/hKZg0RKGZSFN8IojAIojAIojAIojCoEGVC118LWEXx+ZZRnyGIcnkXSn1ALkpUiCFNvtcO17ZMAgICAgJ6hH9xHn/uqCSKowAAAABJRU5ErkJggg=="
+                        alt=""
+                      />
+                    </div>
+                    <div data-i18n="add-funds-question">
+                      How do I add funds to my trading account?
                     </div>
                   </div>
-                  <div style="background: #553c9a; color: white; padding: 2rem; border-radius: 8px; min-width: 280px; text-align: left;">
-                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                      <div style="width: 40px; height: 40px; background: #805ad5; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                          <path d="M3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3H5C3.9 3 3 3.9 3 5ZM15 9H9V7H15V9ZM17 13H7V11H17V13ZM13 17H7V15H13V17Z"/>
-                        </svg>
-                      </div>
-                      <div>
-                        <h4 style="margin: 0; font-size: 1.1rem; font-weight: 600;">Bank counter/cheque</h4>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Bank counter Deposit</p>
-                      </div>
+                  <div class="answer" data-i18n="add-funds-answer">
+                    Enter your username and password to log in to your account. Find
+                    online customer service within the app or contact your dedicated
+                    manager! You can choose from multiple payment methods to deposit
+                    funds, and with just a few simple steps, you can start trading!
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="ask">
+                    <div class="icon">
+                      <img
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAEOUlEQVR4Xu1aPW/UQBBNQUOBhCgooCASSFCkSJOChiAaShA/APgHSZM6oUeCjvKQ6ElFnQraE32QmyixfZdcPpAiRZGGnbWNnNmZtX3edXzJPulJibTnmXk3Mzu757m5gICAgICAKwGIotuwtzdfJl1zZZEH/xzS9JPiluIEkgQEDhU31ZqVKydSSQSbAFUcqs+/m2lxciG2mODaMFLP3cBso/Z6C10aafqZCcYlI8wYart3UE4uamfNAPxQlSL1oTdQqfy+QZ8YQhxjX1nRvWE0WtbEv5NkHbCh1hd22LveosUwHaWMAINtUP9apCQZMM+ixN4yTz9/KaghRut61zNKtTBRE7G9QDtqKxPcbh06mQsTGXYKxvEW/Uxn0LuJ3bkV+hkXyL8EHNxMm8jd3VX6mU5g3VpblkgdKDtfDbsFd3YW6XqvyFPXdCTjOl3vAzCZ4LzDZ0rXpQPZtmg6go0P4CZd7wvWHqYmZbreCyzZEcPp6VslyMsSnykuKT5WvKt4gz6vLVQ2rDK+dJcl6hsZGMaRh4cfiRgSF1Ec+tw2AOnM1EWWCCkaM4FXEbPnPn3+NNAHSdMn/6O9aLh+dnBEYVr3HeGLiug6p9CDlmkUmN4xDR9Re02gxvx1wy/kZPKArnUGoVb/MMFNyyfUZl2I2etzJmLTcn//OxNYGz6FKXYjPZdQ3zL6m4sYY9g/vjBBteVUkybwR4kBXecE4vxxdPSBCcgFG5cPW9JxvEnXOYEoyPHxGhOMKzaaVwRB/AxooiD+MgT5Ahr0k34I0m4GqcMF6osEQRA/JYMwjCEPDr4xQbjmHeoLB3YX9DmtAtfFx+OfTACuWZklYgZ7uqjSAO5eM01PmAB80NpLQLrbHY2W6VpnAPzZgBpE+t1pClpHcJBO4Q7vdA2Iael+WuW4RP0pIPrla4cpg+3kWDbn52+YIFxS3IKVDxuGT5lf/s4xBcRT5Xi8yQThmrcMf2w/TXTx41V+uWtub0j/veSe4Y/UO3ydYTiIWZKmsefSeXjBD+k+FdlFdhTIj9qR4UQmyjYTiCv+n0cge9PAtJ/R35FfgjL6mnEkIw5rfjJFC6LFkMrW97WhDTgWMw5lxPI5O3NxtVjmgi4TWYxuS4XC+utZIYqrwx9m3Gj0w7BB2cVWa4N12ysLc3KyYQRZhygEHiCT5K/xXIkzIUrmaKyn2qrtGUXAzErTX9BEiIu2eiAKN8XaiDtSmv4ucRumFYDjZYuCEGcU94wAdxvplFuwF6Jk2SI32zbMdpgL76rNhCgI7WjTMpKIQuCbi8K2OjOiIHRqZ5dLkeFoFdURHvAepsa9xkyJUkCX03j8CrL3UQc6gwri/8X7q/hKZg0RKGZSFN8IojAIojAIojAIojCoEGVC118LWEXx+ZZRnyGIcnkXSn1ALkpUiCFNvtcO17ZMAgICAgJ6hH9xHn/uqCSKowAAAABJRU5ErkJggg=="
+                        alt=""
+                      />
+                    </div>
+                    <div data-i18n="payment-fees-question">
+                      Do you charge any fees for the payment or withdrawal?
                     </div>
                   </div>
+                  <div class="answer" data-i18n="payment-fees-answer">
+                    We do not charge any fees for depositing funds to your account.
+                    We do not charge any fees for withdrawal of funds in most
+                    countries.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="ask">
+                    <div class="icon">
+                      <img
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAEOUlEQVR4Xu1aPW/UQBBNQUOBhCgooCASSFCkSJOChiAaShA/APgHSZM6oUeCjvKQ6ElFnQraE32QmyixfZdcPpAiRZGGnbWNnNmZtX3edXzJPulJibTnmXk3Mzu757m5gICAgICAKwGIotuwtzdfJl1zZZEH/xzS9JPiluIEkgQEDhU31ZqVKydSSQSbAFUcqs+/m2lxciG2mODaMFLP3cBso/Z6C10aafqZCcYlI8wYart3UE4uamfNAPxQlSL1oTdQqfy+QZ8YQhxjX1nRvWE0WtbEv5NkHbCh1hd22LveosUwHaWMAINtUP9apCQZMM+ixN4yTz9/KaghRut61zNKtTBRE7G9QDtqKxPcbh06mQsTGXYKxvEW/Uxn0LuJ3bkV+hkXyL8EHNxMm8jd3VX6mU5g3VpblkgdKDtfDbsFd3YW6XqvyFPXdCTjOl3vAzCZ4LzDZ0rXpQPZtmg6go0P4CZd7wvWHqYmZbreCyzZEcPp6VslyMsSnykuKT5WvKt4gz6vLVQ2rDK+dJcl6hsZGMaRh4cfiRgSF1Ec+tw2AOnM1EWWCCkaM4FXEbPnPn3+NNAHSdMn/6O9aLh+dnBEYVr3HeGLiug6p9CDlmkUmN4xDR9Re02gxvx1wy/kZPKArnUGoVb/MMFNyyfUZl2I2etzJmLTcn//OxNYGz6FKXYjPZdQ3zL6m4sYY9g/vjBBteVUkybwR4kBXecE4vxxdPSBCcgFG5cPW9JxvEnXOYEoyPHxGhOMKzaaVwRB/AxooiD+MgT5Ahr0k34I0m4GqcMF6osEQRA/JYMwjCEPDr4xQbjmHeoLB3YX9DmtAtfFx+OfTACuWZklYgZ7uqjSAO5eM01PmAB80NpLQLrbHY2W6VpnAPzZgBpE+t1pClpHcJBO4Q7vdA2Iael+WuW4RP0pIPrla4cpg+3kWDbn52+YIFxS3IKVDxuGT5lf/s4xBcRT5Xi8yQThmrcMf2w/TXTx41V+uWtub0j/veSe4Y/UO3ydYTiIWZKmsefSeXjBD+k+FdlFdhTIj9qR4UQmyjYTiCv+n0cge9PAtJ/R35FfgjL6mnEkIw5rfjJFC6LFkMrW97WhDTgWMw5lxPI5O3NxtVjmgi4TWYxuS4XC+utZIYqrwx9m3Gj0w7BB2cVWa4N12ysLc3KyYQRZhygEHiCT5K/xXIkzIUrmaKyn2qrtGUXAzErTX9BEiIu2eiAKN8XaiDtSmv4ucRumFYDjZYuCEGcU94wAdxvplFuwF6Jk2SI32zbMdpgL76rNhCgI7WjTMpKIQuCbi8K2OjOiIHRqZ5dLkeFoFdURHvAepsa9xkyJUkCX03j8CrL3UQc6gwri/8X7q/hKZg0RKGZSFN8IojAIojAIojAIojCoEGVC118LWEXx+ZZRnyGIcnkXSn1ALkpUiCFNvtcO17ZMAgICAgJ6hH9xHn/uqCSKowAAAABJRU5ErkJggg=="
+                        alt=""
+                      />
+                    </div>
+                    <div data-i18n="withdraw-funds-question">
+                      How do I withdraw funds?
+                    </div>
+                  </div>
+                  <div class="answer" data-i18n="withdraw-funds-answer">
+                    We do not charge any fees for depositing funds to your account.
+                    We do not charge any fees for withdrawal of funds in most
+                    countries.
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
+        <!-- 原始页面内容结束 -->
 
-        <!-- Online Wallet Options Section -->
-        <section style="padding: 3rem 0; background-color: #f7fafc;">
-          <div class="container-large">
-            <div class="padding-global">
-              <div style="text-align: center;">
-                <h3 class="text-size-large" style="margin-bottom: 1rem;">Online wallet options such as:</h3>
-                <p style="margin-bottom: 2rem; color: #6b7280; max-width: 600px; margin-left: auto; margin-right: auto;">
-                  Please note that any payment made through bank wire transfer needs to be posted to the bank for financing guarantee. Once the bank receives the funds, it will immediately move them. This way, the funds in your account will have financing functions.
-                </p>
-                <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
-                  <div style="background: #fbbf24; color: black; padding: 0.5rem 1.5rem; border-radius: 6px; font-weight: 600;">Maybank</div>
-                  <div style="background: #1e3a8a; color: white; padding: 0.5rem 1.5rem; border-radius: 6px; font-weight: 600;">VISA</div>
-                  <div style="background: #dc2626; color: white; padding: 0.5rem 1.5rem; border-radius: 6px; font-weight: 600;">Hong Leong Bank</div>
-                  <div style="background: #f97316; color: white; padding: 0.5rem 1.5rem; border-radius: 6px; font-weight: 600;">STICPAY</div>
-                  <div style="background: #6b7280; color: white; padding: 0.5rem 1.5rem; border-radius: 6px; font-weight: 600;">AND MORE</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Methods Important Information Section -->
-        <section style="padding: 4rem 0;">
-          <div class="container-large">
-            <div class="padding-global">
-              <div style="text-align: center; margin-bottom: 3rem;">
-                <h2 class="heading-style-h1" style="margin-bottom: 1rem;">Methods Important Information</h2>
-                <div class="text-divider-horizontal background-color-bright-blue" style="margin: 0 auto;"></div>
-              </div>
-              <div style="max-width: 800px; margin: 0 auto;">
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3182ce; margin-bottom: 1rem;">
-                  <p style="margin: 0;"><strong>1.</strong> After receiving the withdrawal request form, it will be processed within 48 hours. Usually, it is posted on the same day!</p>
-                </div>
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3182ce; margin-bottom: 1rem;">
-                  <p style="margin: 0;"><strong>2.</strong> Due to third-party trading rules, funds can only be refunded to a bank account with the same name (or joint name) as your FY-VIEW trading account.</p>
-                </div>
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3182ce; margin-bottom: 1rem;">
-                  <p style="margin: 0;"><strong>3.</strong> Any international telegraphic transfer (TT) fees charged by our banking institutions are passed on to customers.</p>
-                </div>
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3182ce; margin-bottom: 1rem;">
-                  <p style="margin: 0;"><strong>4.</strong> Recharge through bank wire transfer usually takes about 10 minutes for the funds to reach your account.</p>
-                </div>
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3182ce; margin-bottom: 1rem;">
-                  <p style="margin: 0;"><strong>5.</strong> Please note that in the event of any unforeseen circumstances, withdrawals may take longer.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section style="padding: 4rem 0; background-color: #f7fafc;">
-          <div class="container-large">
-            <div class="padding-global">
-              <div style="text-align: center; margin-bottom: 3rem;">
-                <h2 class="heading-style-h1" style="margin-bottom: 1rem;">Frequently Asked Questions</h2>
-                <div class="text-divider-horizontal background-color-bright-blue" style="margin: 0 auto;"></div>
-              </div>
-              <div style="max-width: 800px; margin: 0 auto;">
-                <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1rem; overflow: hidden;">
-                  <div style="background: #2d3748; color: white; padding: 1rem; display: flex; align-items: center;">
-                    <div style="width: 24px; height: 24px; background: #4299e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; font-size: 0.9rem;">Q</div>
-                    <h4 style="margin: 0; font-weight: 600;">How do I add funds to my trading account?</h4>
-                  </div>
-                  <div style="padding: 1.5rem;">
-                    <p style="margin: 0; color: #4a5568;">Enter your username and password to log in to your account. Find online customer service within the app or contact your dedicated manager! You can choose from multiple payment methods to deposit funds, and with just a few simple steps, you can start trading.</p>
-                  </div>
-                </div>
-                <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1rem; overflow: hidden;">
-                  <div style="background: #2d3748; color: white; padding: 1rem; display: flex; align-items: center;">
-                    <div style="width: 24px; height: 24px; background: #4299e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; font-size: 0.9rem;">Q</div>
-                    <h4 style="margin: 0; font-weight: 600;">Do you charge any fees for the payment or withdrawal?</h4>
-                  </div>
-                  <div style="padding: 1.5rem;">
-                    <p style="margin: 0; color: #4a5568;">We do not charge any fees for depositing funds to your account. We do not charge any fees for withdrawal of funds in most countries.</p>
-                  </div>
-                </div>
-                <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1rem; overflow: hidden;">
-                  <div style="background: #2d3748; color: white; padding: 1rem; display: flex; align-items: center;">
-                    <div style="width: 24px; height: 24px; background: #4299e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; font-size: 0.9rem;">Q</div>
-                    <h4 style="margin: 0; font-weight: 600;">How do I withdraw funds?</h4>
-                  </div>
-                  <div style="padding: 1.5rem;">
-                    <p style="margin: 0; color: #4a5568;">We do not charge any fees for depositing funds to your account. We do not charge any fees for withdrawal of funds in most countries.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
-
       <footer class="footer_component">
         <div class="container-large">
           <div class="padding-global">
@@ -747,19 +1064,34 @@
               <div class="footer_col">
                 <h2 class="text-size-large is-footer_col">Our Locations</h2>
                 <div class="footer_locations-wrapper">
-                  <a href="https://maps.google.com/?q=140+Broadway,+47th+Floor,+New+York,+NY+10005,+USA" target="_blank" class="footer_locations-item w-inline-block">
-                    <div class="footer_locations-item-visual-wrapper">
-                      <img src="static/picture/651b0e65fe0f6fbcf54a06a1_Hudson Yards 3.jpg" loading="lazy" alt="" class="visual is-location" />
+                  <a
+                    href="https://maps.google.com/?q=140+Broadway,+47th+Floor,+New+York,+NY+10005,+USA"
+                    target="_blank"
+                    class="footer_locations-item w-inline-block"
+                    ><div class="footer_locations-item-visual-wrapper">
+                      <img
+                        src="static/picture/651b0e65fe0f6fbcf54a06a1_Hudson Yards 3.jpg"
+                        loading="lazy"
+                        sizes="(max-width: 850px) 100vw, 850px"
+                        srcset="
+                          https://cdn.prod.website-files.com/64d3aa15d900b40ca745b0f8/651b0e65fe0f6fbcf54a06a1_Hudson%20Yards%203-p-500.jpg 500w,
+                          https://cdn.prod.website-files.com/64d3aa15d900b40ca745b0f8/651b0e65fe0f6fbcf54a06a1_Hudson%20Yards%203-p-800.jpg 800w,
+                          https://cdn.prod.website-files.com/64d3aa15d900b40ca745b0f8/651b0e65fe0f6fbcf54a06a1_Hudson%20Yards%203.jpg       850w
+                        "
+                        alt=""
+                        class="visual is-location"
+                      />
                     </div>
                     <div class="footer_locations-text-wrapper">
-                      <p class="text-size-small is-footer_locations-text-wrapper">
-                        Windsor Heritage Capital Partners LP<br />
-                        140 Broadway, 47th Floor<br />
-                        New York, NY 10005, USA
+                      <p
+                        class="text-size-small is-footer_locations-text-wrapper"
+                      >
+                      140 Broadway, 47th Floor, New York, NY 10005, USA
                       </p>
-                      <div class="text-style-link link-capsed">GET DIRECTIONS</div>
-                    </div>
-                  </a>
+                      <div class="text-style-link link-capsed">
+                        GET DIRECTIONS
+                      </div>
+                    </div></a>
                 </div>
               </div>
               <div id="contact-us" class="footer_col">
@@ -824,28 +1156,56 @@
                 </div>
                 
                 <p class="text-size-tiny">
-                  Windsor Heritage Capital Partners LP, Member FINRA / SIPC<br>
-                  Learn more about Windsor Heritage Capital Partners LP at FINRA's BrokerCheck<br><br>
-                  Windsor Heritage Capital Partners International LLP is authorized and regulated by the Financial Conduct Authority<br>
-                  Registered in England & Wales, Company No.: OC413815<br><br>
-                  © Copyright <span id="current-year">*</span>, Windsor Heritage Capital Holdings LP. All Rights Reserved.
+                  Windsor Heritage Capital Partners LP, Member FINRA / SIPC<br />Learn
+                  more about Windsor Heritage Capital Partners LP at
+                  FINRA's BrokerCheck<br /><br />Windsor Heritage Capital
+                  Partners International LLP is authorized and regulated by the
+                  Financial Conduct Authority<br />Registered in England &amp;
+                  Wales, Company No.: OC413815<br /><br />© Copyright
+                  <span id="current-year">*</span>, Windsor Heritage Capital
+                  Holdings LP. All Rights Reserved.
                 </p>
                 <div class="button-group is-legal-links">
-                  <a href="privacy-policy.html" class="text-style-link link-capsed is-footer-legal-link">PRIVACY NOTICE</a>
-                  <a href="regulatory-disclosures.html" class="text-style-link link-capsed is-footer-legal-link">REGULATORY DISCLOSURES</a>
-                  <a id="fake-cookie-button" href="#" class="text-style-link link-capsed is-footer-legal-link">MY PRIVACY CHOICES</a>
+                  <a
+                    href="privacy-policy.html"
+                    class="text-style-link link-capsed is-footer-legal-link"
+                    >PRIVACY NOTICE</a
+                  ><a
+                    href="regulatory-disclosures.html"
+                    class="text-style-link link-capsed is-footer-legal-link"
+                    >REGULATORY DISCLOSURES</a
+                  ><a
+                    id="fake-cookie-button"
+                    href="#"
+                    class="text-style-link link-capsed is-footer-legal-link"
+                    >MY PRIVACY CHOICES</a
+                  >
                   <div class="hide w-embed">
-                    <button id="ot-sdk-btn" class="text-style-link link-capsed is-footer-legal-link ot-sdk-show-settings">Cookie Settings</button>
+                    <!-- OneTrust Cookies Settings button start -->
+                    <button
+                      id="ot-sdk-btn"
+                      class="text-style-link link-capsed is-footer-legal-link ot-sdk-show-settings"
+                    >
+                      Cookie Settings
+                    </button>
+                    <!-- OneTrust Cookies Settings button end -->
                   </div>
                 </div>
+                <a
+                  href="https://www.finerfox.com/"
+                  target="_blank"
+                  class="credit-text"
+                  >Webflow development agency</a
+                >
               </div>
             </div>
           </div>
         </div>
       </footer>
     </div>
-
-    <script src="static/js/jquery-3.5.1.min.dc5e7f18c8.js" type="text/javascript"></script>
+    <script
+      src="static/js/jquery-3.5.1.min.dc5e7f18c8.js"
+      type="text/javascript"></script>
     <script>
       // Error handling for webflow and other dependencies
       window.addEventListener("error", function (e) {
@@ -864,9 +1224,18 @@
       // Ensure jQuery is available globally before webflow scripts
       window.$ = window.jQuery = window.jQuery || $;
     </script>
-    <script src="static/js/webflow.schunk.36b8fb49256177c8.js" type="text/javascript"></script>
-    <script src="static/js/webflow.schunk.b563922ffaac1f58.js" type="text/javascript"></script>
-    <script src="static/js/webflow.227f46f3.90a758fbcc945077.js" type="text/javascript"></script>
+    <script
+      src="static/js/webflow.schunk.36b8fb49256177c8.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="static/js/webflow.schunk.b563922ffaac1f58.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="static/js/webflow.227f46f3.90a758fbcc945077.js"
+      type="text/javascript"
+    ></script>
     <script>
       const currentYearField = document.getElementById("current-year");
       currentYearField.innerText = new Date().getFullYear();
@@ -893,13 +1262,13 @@
             realButton.click();
           } else {
             // OneTrust not available, show placeholder message
-            console.log("Cookie settings not available in local development mode");
+            console.log(
+              "Cookie settings not available in local development mode"
+            );
             alert("Cookie settings are not available in development mode.");
           }
         });
       }
     </script>
   </body>
-</html> 
-
-
+</html>
