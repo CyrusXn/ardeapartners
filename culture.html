@@ -154,48 +154,59 @@ function removeSourceByExtension(videoElement, extensionToRemove) {
 </script>
 <!-- end movie alterations -->
 
-<!-- [Attributes by Finsweet] Disable scrolling -->
-<script defer src="static/js/scrolldisable.js"></script>
-<script src="static/js/lenis.min.js"></script> 
+<!-- [Attributes by Finsweet] Disable scrolling - 已移除以修复滚动问题 -->
+<!-- <script defer src="static/js/scrolldisable.js"></script> -->
+<!-- <script src="static/js/lenis.min.js"></script> -->
 <script>
-      const lenis = new Lenis();
-
-      lenis.on("scroll", (e) => {
-        // console.log(e);
-      });
-
-function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-}
-
-      requestAnimationFrame(raf);
+      // 禁用Lenis，使用原生滚动修复滚动问题
+      // const lenis = new Lenis();
+      // lenis.on("scroll", (e) => {
+      //   // console.log(e);
+      // });
+      // function raf(time) {
+      //   lenis.raf(time);
+      //   requestAnimationFrame(raf);
+      // }
+      // requestAnimationFrame(raf);
+      
+      // 强制修复滚轮事件问题
+      // 直接接管所有滚动控制，绕过可能的阻止机制
+      document.addEventListener('wheel', function(e) {
+        window.scrollBy(0, e.deltaY);
+      }, { passive: true });
+      
+      // 同时支持触摸滚动
+      let touchStartY = 0;
+      document.addEventListener('touchstart', function(e) {
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      
+      document.addEventListener('touchmove', function(e) {
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchStartY - touchY;
+        window.scrollBy(0, deltaY);
+        touchStartY = touchY;
+      }, { passive: true });
 </script>
 <!-- Please keep this css code to improve the font quality-->
 <style>
-  html.lenis {
-  height: auto;
-}
+/* 移除Lenis相关样式，使用原生滚动 */
+/* html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; } */
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-   pointer-events: none;
-} 
-  * {
+* {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -o-font-smoothing: antialiased;
+}
+
+/* 确保页面可以正常滚动 */
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 </style>
 
@@ -1858,5 +1869,235 @@ currentYearField.innerText = new Date().getFullYear();
         });
       }
     </script>
+    
+    <!-- 全局客服组件 -->
+    <div id="global-customer-service" class="customer-service-widget">
+      <div class="customer-service-btn" onclick="toggleCustomerService()">
+        <img src="static/image/lxwm.jpg" alt="Contact Us" class="customer-service-icon">
+        <span class="customer-service-text">Contact Us</span>
+      </div>
+      <div id="customer-service-modal" class="customer-service-modal" style="display: none;">
+        <div class="customer-service-modal-content">
+          <div class="customer-service-header">
+            <span class="customer-service-title">線上客服</span>
+            <span class="customer-service-close" onclick="toggleCustomerService()">&times;</span>
+          </div>
+          <iframe 
+            id="customer-service-iframe"
+            src="https://client.aquacs.net/?projectId=68ac2a22e061c12eda305e94&tpl=zh-tw" 
+            frameborder="0" 
+            allowfullscreen
+            class="customer-service-iframe">
+          </iframe>
+        </div>
+      </div>
+    </div>
+    
+    <style>
+    /* 客服组件样式 */
+    .customer-service-widget {
+      position: fixed;
+      bottom: 200px;
+      right: 30px;
+      z-index: 9999;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    .customer-service-btn {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 2px solid #e5e7eb;
+      border-radius: 50px;
+      padding: 12px 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      user-select: none;
+      max-width: 180px;
+    }
+    
+    .customer-service-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      border-color: #3b82f6;
+    }
+    
+    .customer-service-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+    
+    .customer-service-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      white-space: nowrap;
+    }
+    
+    .customer-service-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .customer-service-modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 800px;
+      height: 80vh;
+      max-height: 600px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .customer-service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+    
+    .customer-service-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+    }
+    
+    .customer-service-close {
+      font-size: 24px;
+      color: #6b7280;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    
+    .customer-service-close:hover {
+      color: #374151;
+    }
+    
+    .customer-service-iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .customer-service-widget {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .customer-service-btn {
+        padding: 10px 16px;
+        max-width: 160px;
+      }
+      
+      .customer-service-icon {
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+      }
+      
+      .customer-service-text {
+        font-size: 13px;
+      }
+      
+      .customer-service-modal {
+        padding: 10px;
+      }
+      
+      .customer-service-modal-content {
+        height: 90vh;
+        max-height: none;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .customer-service-btn {
+        padding: 8px 12px;
+        max-width: 140px;
+      }
+      
+      .customer-service-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 6px;
+      }
+      
+      .customer-service-text {
+        font-size: 12px;
+      }
+    }
+    </style>
+    
+    <script>
+    // 客服组件功能脚本
+    function toggleCustomerService() {
+      const modal = document.getElementById('customer-service-modal');
+      const iframe = document.getElementById('customer-service-iframe');
+      
+      if (modal.style.display === 'none' || modal.style.display === '') {
+        // 显示客服窗口
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // 防止背景滚动
+        
+        // 重新加载iframe以确保每次都是最新状态
+        iframe.src = iframe.src;
+      } else {
+        // 隐藏客服窗口
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // 恢复背景滚动，使用空字符串重置为默认值
+      }
+    }
+    
+    // 点击模态框背景关闭窗口
+    document.addEventListener('DOMContentLoaded', function() {
+      // 确保页面初始化时滚动是正常的
+      document.body.style.overflow = '';
+      
+      const modal = document.getElementById('customer-service-modal');
+      if (modal) {
+        // 确保模态框初始状态是隐藏的
+        modal.style.display = 'none';
+        
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            toggleCustomerService();
+          }
+        });
+      }
+      
+      // ESC键关闭窗口
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const modal = document.getElementById('customer-service-modal');
+          if (modal && modal.style.display !== 'none') {
+            toggleCustomerService();
+          }
+        }
+      });
+    });
+    </script>
+    
   </body>
 </html>

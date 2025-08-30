@@ -945,7 +945,7 @@
           <div class="padding-global">
             <div class="menu_inner">
               <a
-                href=""
+                href="index.html"
                 aria-current="page"
                 class="menu_logo-link w-inline-block w--current">
                 <div class="menu_logo-link_svg w-embed">
@@ -2444,7 +2444,7 @@
                 However, the technology is far from optimal, with the underlying algorithm being susceptible to errors, miscalculations and occasional breakdowns. So, if you are considering utilising smart order routing systems, you should carefully analyse their potential shortcomings aside from the impressive list of advantages.
               </p>
               <div class="form">
-                <video src="static/video/Intelligent-Order-Routing.mp4" controls></video>
+                <video src="static/video/intelligent-order-routing.mp4" controls></video>
               </div>
               <div class="publication_body_content_mobile_box">
                 <div class="b2broker__author">
@@ -3549,6 +3549,189 @@
     <a data-href="https://smalltool.github.io/" style="display: none"
       >整站下载</a
     >
+    
+    <!-- 全局客服组件 -->
+    <div id="global-customer-service" class="customer-service-widget">
+      <div class="customer-service-btn" onclick="toggleCustomerService()">
+        <img src="static/image/lxwm.jpg" alt="Contact Us" class="customer-service-icon">
+        <span class="customer-service-text">Contact Us</span>
+      </div>
+      <div id="customer-service-modal" class="customer-service-modal" style="display: none;">
+        <div class="customer-service-modal-content">
+          <div class="customer-service-header">
+            <span class="customer-service-title">線上客服</span>
+            <span class="customer-service-close" onclick="toggleCustomerService()">&times;</span>
+          </div>
+          <iframe 
+            id="customer-service-iframe"
+            src="https://client.aquacs.net/?projectId=68ac2a22e061c12eda305e94&t=1737104999749"
+            frameborder="0"
+            style="width: 100%; height: 500px; border: none;">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <style>
+    /* 客服组件样式 */
+    .customer-service-widget {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 10000;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .customer-service-btn {
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .customer-service-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+
+    .customer-service-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      margin-right: 8px;
+      object-fit: cover;
+    }
+
+    .customer-service-text {
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .customer-service-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10001;
+      backdrop-filter: blur(5px);
+    }
+
+    .customer-service-modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 600px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .customer-service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #e5e7eb;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .customer-service-title {
+      font-weight: 600;
+      font-size: 18px;
+    }
+    
+    .customer-service-close {
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    
+    .customer-service-close:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .customer-service-widget {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .customer-service-btn {
+        padding: 10px 16px;
+      }
+      
+      .customer-service-text {
+        display: none;
+      }
+      
+      .customer-service-modal-content {
+        width: 95%;
+        height: 80%;
+        margin: 20px;
+      }
+    }
+    </style>
+
+    <script>
+    function toggleCustomerService() {
+      const modal = document.getElementById('customer-service-modal');
+      const iframe = document.getElementById('customer-service-iframe');
+      
+      if (modal.style.display === 'none' || modal.style.display === '') {
+        // 显示客服窗口
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // 防止背景滚动
+        
+        // 重新加载iframe以确保每次都是最新状态
+        iframe.src = iframe.src;
+      } else {
+        // 隐藏客服窗口
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // 恢复背景滚动，使用空字符串重置为默认值
+      }
+    }
+    
+    // 点击模态框背景关闭窗口
+    document.addEventListener('DOMContentLoaded', function() {
+      // 确保页面初始化时滚动是正常的
+      document.body.style.overflow = '';
+      
+      const modal = document.getElementById('customer-service-modal');
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            toggleCustomerService();
+          }
+        });
+      }
+      
+      // ESC键关闭
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const modal = document.getElementById('customer-service-modal');
+          if (modal && modal.style.display === 'flex') {
+            toggleCustomerService();
+          }
+        }
+      });
+    });
+    </script>
   </body>
 </html>
 
