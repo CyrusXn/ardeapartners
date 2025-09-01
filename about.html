@@ -174,48 +174,57 @@
     </script>
     <!-- end movie alterations -->
 
-    <!-- [Attributes by Finsweet] Disable scrolling -->
-    <script defer src="static/js/scrolldisable.js"></script>
-    <script src="static/js/lenis.min.js"></script>
+    <!-- <script src="static/js/lenis.min.js"></script> -->
     <script>
-      const lenis = new Lenis();
-
-      lenis.on("scroll", (e) => {
-        // console.log(e);
-      });
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-
-      requestAnimationFrame(raf);
+      // 禁用Lenis，使用原生滚动修复滚动问题
+      // const lenis = new Lenis();
+      // lenis.on("scroll", (e) => {
+      //   // console.log(e);
+      // });
+      // function raf(time) {
+      //   lenis.raf(time);
+      //   requestAnimationFrame(raf);
+      // }
+      // requestAnimationFrame(raf);
+      
+      // 强制修复滚轮事件问题
+      // 直接接管所有滚动控制，绕过可能的阻止机制
+      document.addEventListener('wheel', function(e) {
+        window.scrollBy(0, e.deltaY);
+      }, { passive: true });
+      
+      // 同时支持触摸滚动
+      let touchStartY = 0;
+      document.addEventListener('touchstart', function(e) {
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      
+      document.addEventListener('touchmove', function(e) {
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchStartY - touchY;
+        window.scrollBy(0, deltaY);
+        touchStartY = touchY;
+      }, { passive: true });
     </script>
     <!-- Please keep this css code to improve the font quality-->
     <style>
-      html.lenis {
-        height: auto;
-      }
+      /* 移除Lenis相关样式，使用原生滚动 */
+      /* html.lenis { height: auto; }
+      .lenis.lenis-smooth { scroll-behavior: auto; }
+      .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+      .lenis.lenis-stopped { overflow: hidden; }
+      .lenis.lenis-scrolling iframe { pointer-events: none; } */
 
-      .lenis.lenis-smooth {
-        scroll-behavior: auto;
-      }
-
-      .lenis.lenis-smooth [data-lenis-prevent] {
-        overscroll-behavior: contain;
-      }
-
-      .lenis.lenis-stopped {
-        overflow: hidden;
-      }
-
-      .lenis.lenis-scrolling iframe {
-        pointer-events: none;
-      }
       * {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         -o-font-smoothing: antialiased;
+      }
+
+      /* 确保页面可以正常滚动 */
+      html, body {
+        overflow-x: hidden;
+        overflow-y: auto;
       }
     </style>
 
@@ -852,9 +861,9 @@ a,
                   >
                     <p class="text-size-small">140 Broadway, 47th Floor, New York, NY 10005, USA</p>
                     <a
-                      href="mailto:ContactUS@ardeapartners.com"
+                      href="mailto:info@windsorheritagecapital.com"
                       class="text-size-small is-footer_contacts-item-main is-link"
-                      >ContactUS@ardeapartners.com</a
+                      >info@windsorheritagecapital.com</a
                     ><a href="tel:+12124302300" class="text-size-small is-link"
                       >+1 212 430 2300</a
                     >
@@ -1906,15 +1915,6 @@ a,
                     href="privacy-policy.html"
                     class="text-style-link link-capsed is-footer-legal-link"
                     >PRIVACY NOTICE</a
-                  ><a
-                    href="regulatory-disclosures.html"
-                    class="text-style-link link-capsed is-footer-legal-link"
-                    >REGULATORY DISCLOSURES</a
-                  ><a
-                    id="fake-cookie-button"
-                    href="#"
-                    class="text-style-link link-capsed is-footer-legal-link"
-                    >MY PRIVACY CHOICES</a
                   >
                   <div class="hide w-embed">
                     <!-- OneTrust Cookies Settings button start -->

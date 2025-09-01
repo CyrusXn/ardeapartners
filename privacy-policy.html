@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Wed Aug 13 2025 03:04:48 GMT+0000 (Coordinated Universal Time) -->
 <html
   data-wf-domain="windsorheritagecapitals.com"
@@ -223,6 +223,100 @@
             }
           }
         </style>
+
+<!-- 谷歌翻译样式 - 隐藏不需要的UI元素并美化 -->
+<style>
+/* Google Translate Styles */
+#google_translate_element {
+  overflow: hidden;
+  border-radius: 0.25rem;
+  background: transparent;
+  border: none;
+  font-size: 0.875rem;
+  position: relative;
+  z-index: 1000;
+}
+
+#google_translate_element .skiptranslate {
+  border-radius: 0.25rem;
+}
+
+#google_translate_element select {
+  background-color: var(--white);
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.375rem 0.75rem;
+}
+
+#google_translate_element select:focus {
+  border-color: var(--bright-blue);
+  outline: none;
+  box-shadow: 0 0 0 0.125rem rgba(40, 139, 255, 0.25) !important;
+}
+
+/* 隐藏谷歌翻译的顶部横幅 */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+/* 隐藏"由谷歌翻译提供支持"文本 */
+.goog-te-gadget > span > a {
+  display: none !important;
+}
+
+.goog-te-gadget > span > span {
+  display: none !important;
+}
+
+/* 自定义语言选择器样式 */
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.language-selector button {
+  background: transparent;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.language-selector button:hover {
+  border-color: var(--bright-blue);
+  color: var(--bright-blue);
+}
+
+.language-selector button.active {
+  background-color: var(--bright-blue);
+  border-color: var(--bright-blue);
+  color: var(--white);
+}
+
+@media screen and (max-width: 767px) {
+  .language-selector {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .language-selector button {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+</style>
 
         <style>
           /* Focus state style for keyboard navigation for the focusable elements */
@@ -576,6 +670,14 @@ a,
                     >Deposit and Withdrawal</a
                   >
                 </div>
+                <!-- 语言选择器 -->
+                <div class="language-selector">
+                  <button onclick="changeLanguage('en')" id="lang-en" class="active">English</button>
+                  <button onclick="changeLanguage('zh-CN')" id="lang-zh-cn">简体中文</button>
+                  <button onclick="changeLanguage('zh-TW')" id="lang-zh-tw">繁體中文</button>
+                </div>
+                <!-- 隐藏的谷歌翻译元素 -->
+                <div id="google_translate_element" style="display: none;"></div>
                 <div class="menu_nav-addresses-wrapper">
                   <div
                     id="w-node-_11705a69-43a9-5c60-8297-21a89e405a5c-9e405a5c"
@@ -585,11 +687,9 @@ a,
                       140 Broadway, 47th Floor, New York, NY 10005, USA
                     </p>
                     <a
-                      href="mailto:ContactUS@ardeapartners.com"
+                      href="mailto:info@windsorheritagecapital.com"
                       class="text-size-small is-footer_contacts-item-main is-link"
-                      >ContactUS@ardeapartners.com</a
-                    ><a href="tel:+12124302300" class="text-size-small is-link"
-                      >+1 212 430 2300</a
+                      >info@windsorheritagecapital.com</a
                     >
                   </div>
                   <div
@@ -1155,25 +1255,16 @@ a,
                       140 Broadway, 47th Floor, New York, NY 10005, USA
                     </p>
                     <a
-                      href="mailto:ContactUS@ardeapartners.com"
+                      href="mailto:info@windsorheritagecapital.com"
                       class="text-size-small is-footer_contacts-item-main is-link"
-                      >ContactUS@ardeapartners.com</a
-                    ><a href="tel:+12124302300" class="text-size-small is-link"
-                      >+1 212 430 2300</a
+                      >info@windsorheritagecapital.com</a
                     >
                   </div>
                   <div
                     id="w-node-d72a7dc6-2bb6-0bc3-8fa9-bb4b09619d4a-09619d4a"
                     class="footer_contacts-item"
                   >
-                    <p class="text-size-small">London Office</p>
-                    <a
-                      href="mailto:ContactUK@ardeapartners.com"
-                      class="text-size-small is-footer_contacts-item-main is-link"
-                      >ContactUK@ardeapartners.com</a
-                    ><a href="tel:+442038488700" class="text-size-small is-link"
-                      >+44 203 848 8700</a
-                    >
+                  
                   </div>
                 </div>
                 <p class="text-size-tiny">
@@ -1192,15 +1283,6 @@ a,
                     aria-current="page"
                     class="text-style-link link-capsed is-footer-legal-link w--current"
                     >PRIVACY NOTICE</a
-                  ><a
-                    href="regulatory-disclosures.html"
-                    class="text-style-link link-capsed is-footer-legal-link"
-                    >REGULATORY DISCLOSURES</a
-                  ><a
-                    id="fake-cookie-button"
-                    href="#"
-                    class="text-style-link link-capsed is-footer-legal-link"
-                    >MY PRIVACY CHOICES</a
                   >
                   <div class="hide w-embed">
                     <!-- OneTrust Cookies Settings button start -->
@@ -1256,6 +1338,9 @@ a,
         });
       });
     </script>
+
+<!-- 多语言翻译功能脚本 - 引用公共文件 -->
+<script src="static/js/translation.js" type="text/javascript"></script>
 
     <script>
       let fakeButton = document.querySelector("#fake-cookie-button");

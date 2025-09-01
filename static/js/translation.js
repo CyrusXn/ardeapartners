@@ -36,7 +36,21 @@ const LOCAL_TRANSLATIONS = {
         'Contact Us': '联系我们',
         'Team': '团队',
         'Transactions': '交易',
-        'Home': '首页'
+        'Home': '首页',
+        // 隐私政策页面翻译
+        'Windsor Heritage Capital Privacy Notice': 'Windsor Heritage Capital 隐私声明',
+        'Privacy Policy | Windsor Heritage Capital Partners': '隐私政策 | Windsor Heritage Capital Partners',
+        'Privacy Notice': '隐私声明',
+        'Last Updated': '最后更新',
+        'What is Personal Information?': '什么是个人信息？',
+        'Our Collection & Use of Personal Information': '我们对个人信息的收集和使用',
+        'Our Disclosure of Personal Information': '我们对个人信息的披露',
+        'Control Over Your Information': '对您信息的控制',
+        'Data Retention': '数据保留',
+        'Children\'s Personal Information': '儿童个人信息',
+        'Links to Third-party Websites or Services': '第三方网站或服务链接',
+        'Updates to This Privacy Notice': '隐私声明更新',
+        'Contact Us': '联系我们'
     },
     'zh-TW': {
         'About': '關於',
@@ -48,7 +62,21 @@ const LOCAL_TRANSLATIONS = {
         'Contact Us': '聯繫我們',
         'Team': '團隊',
         'Transactions': '交易',
-        'Home': '首頁'
+        'Home': '首頁',
+        // 隐私政策页面翻译
+        'Windsor Heritage Capital Privacy Notice': 'Windsor Heritage Capital 隱私聲明',
+        'Privacy Policy | Windsor Heritage Capital Partners': '隱私政策 | Windsor Heritage Capital Partners',
+        'Privacy Notice': '隱私聲明',
+        'Last Updated': '最後更新',
+        'What is Personal Information?': '什麼是個人信息？',
+        'Our Collection & Use of Personal Information': '我們對個人信息的收集和使用',
+        'Our Disclosure of Personal Information': '我們對個人信息的披露',
+        'Control Over Your Information': '對您信息的控制',
+        'Data Retention': '數據保留',
+        'Children\'s Personal Information': '兒童個人信息',
+        'Links to Third-party Websites or Services': '第三方網站或服務鏈接',
+        'Updates to This Privacy Notice': '隱私聲明更新',
+        'Contact Us': '聯繫我們'
     }
 };
 
