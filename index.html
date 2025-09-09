@@ -39,6 +39,11 @@
       href="static/css/swiper-bundle.min.css"
       rel="stylesheet"
       type="text/css" />
+    <!-- 多语言下拉选择器样式 -->
+    <link
+      href="static/css/language-dropdown.css"
+      rel="stylesheet"
+      type="text/css" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link
       href="https://fonts.gstatic.com"
@@ -440,54 +445,14 @@ function raf(time) {
   display: none !important;
 }
 
-/* 自定义语言选择器样式 */
-.language-selector {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.language-selector button {
-  background: transparent;
-  border: 1px solid #dee2e6;
-  border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
-  color: var(--navy);
-  cursor: pointer;
-  transition: all 0.15s ease-in-out;
-  font-family: inherit;
-}
-
-.language-selector button:hover {
-  border-color: var(--bright-blue);
-  color: var(--bright-blue);
-}
-
-.language-selector button.active {
-  background-color: var(--bright-blue);
-  border-color: var(--bright-blue);
-  color: var(--white);
-}
-
-@media screen and (max-width: 767px) {
-  .language-selector {
-    justify-content: center;
-    margin-top: 1rem;
-  }
-  
-  .language-selector button {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-  }
-}
+/* 语言选择器样式已移至 static/css/language-dropdown.css */
 </style>
   </head>
 
   <body data-barba="wrapper">
     <!-- Google搜索结果网站名称结构化数据 -->
     <div itemscope itemtype="https://schema.org/WebSite">
-      <link itemprop="url" href="https://windsorheritagecapitals.com" />
+      <link itemprop="url" href="https://www.WindsorHeritageCapitals.com" />
       <meta itemprop="name" content="Windsor Heritage Capital Partners"/>
     </div>
     <div data-w-id="d24e5ea8-78da-f5b7-6dab-ac39945b55b0" class="page-wrapper">
@@ -876,9 +841,27 @@ select {
                 </div>
                 <!-- 语言选择器 -->
                 <div class="language-selector">
-                  <button onclick="changeLanguage('en')" id="lang-en" class="active">English</button>
-                  <button onclick="changeLanguage('zh-CN')" id="lang-zh-cn">简体中文</button>
-                  <button onclick="changeLanguage('zh-TW')" id="lang-zh-tw">繁體中文</button>
+                  <div class="language-dropdown-trigger">
+                    <div class="current-language">
+                      <div class="language-flag">EN</div>
+                      <span class="language-name">English</span>
+                    </div>
+                    <div class="dropdown-arrow"></div>
+                  </div>
+                  <div class="language-dropdown-menu">
+                    <button class="language-option active" data-lang="en">
+                      <div class="language-flag">EN</div>
+                      <span>English</span>
+                    </button>
+                    <button class="language-option" data-lang="zh-CN">
+                      <div class="language-flag">中</div>
+                      <span>简体中文</span>
+                    </button>
+                    <button class="language-option" data-lang="zh-TW">
+                      <div class="language-flag">繁</div>
+                      <span>繁體中文</span>
+                    </button>
+                  </div>
                 </div>
                 <!-- 隐藏的谷歌翻译元素 -->
                 <div id="google_translate_element" style="display: none;"></div>
@@ -929,20 +912,14 @@ select {
             <div class="padding-global">
               <div class="_2cols_inner is-hero">
                 <h1 class="hero-home_title">
-                  Strategic Advice. Trust &amp; Partnership.
+                  Windsor Heritage Capital Partners - Global Asset Management
                 </h1>
                 <div></div>
                 <div
                   id="w-node-_958e89b2-5453-af94-9aa2-3b98f73dcab9-8ee67ce8"
                   class="_2cols_cta-wrapper">
                   <p class="_2cols_cta-title is-hero-home">
-                    Windsor Heritage Capital Partners is a boutique investment
-                    bank that takes a differentiated approach to financial
-                    advisory services where we view our clients as
-                    <em>partners</em>. We aim to build long-term, trusting
-                    relationships such that our global team of experienced
-                    professionals can provide valuable, relevant, and
-                    independent financial and strategic advice.
+                    Windsor Heritage Capital Partners,Windsor Heritage,Global Asset Management,Asset Management,Asset Advisory
                   </p>
                   <a
                     href="about.html"
@@ -1011,11 +988,7 @@ select {
                   </div>
                 </div>
                 <blockquote class="emblem_quote">
-                  The Windsor Heritage Capital is a genus of herons—powerful and
-                  elegant birds known for their steady and graceful flight.<br /><br />Herons
-                  appear in mythology and folklore of cultures around the
-                  world—symbolizing patience, perseverance, wisdom,
-                  transformation and our favorite: good fortune.
+                  Windsor Heritage Capital is the result of an alliance forged by our founders. After decades of collaborative work at Goldman Sachs and in Global Asset Management, they sought to create a firm where they could pursue their passion for advising the world's best companies and leaders in an environment of partnership and trust. Recognizing the significant demand within Global Asset Management for truly independent and trustworthy strategic and financial advice, Windsor Heritage Capital was established with a unique partnership culture to attract professionals who share their vision.
                 </blockquote>
               </div>
             </div>
@@ -1032,23 +1005,15 @@ select {
                     </div>
                     <h2 class="body_mw-light">How We Differ</h2>
                   </div>
-                  <h3 class="heading-style-h1 is-text-and-visual_text-part">
-                    True Partners Solve Problems Together
+                  <h3 class="heading-style-h1 is-text-and-visual_text-part" style="font-size: 52px">
+                    Blockchain Financial Advisory & Crypto Asset Advisory
                   </h3>
                   <p>
-                    At Windsor Heritage Capital, our approach extends from our
-                    clients to our people, fostering a spirit of true
-                    partnership that benefits all constituents. <br /><br />Our
-                    clients are served by a nimble and highly experienced team
-                    which brings the right set of advisory skills to every
-                    engagement. We embrace complex challenges and the
-                    opportunity to collaborate with our clients to solve them.
-                    We aim to create longstanding relationships where we all
-                    grow, learn and achieve commercial success together.
-                    <br /><br />Our true partnership model empowers and
-                    encourages our people to work closely together. Our
-                    commitment to inclusivity and belonging ensures that a broad
-                    set of ideas are considered for each client engagement.
+                    At the forefront of innovation, our Blockchain Financial Advisory and Crypto Asset Advisory services are designed to guide clients through the complexities of digital transformation in global finance. We bring distinct expertise in blockchain ecosystems, crypto markets, and digital asset strategies, helping institutions, corporations, and investors navigate a rapidly evolving landscape. <br /><br />Our Blockchain Financial Advisory practice focuses on strategic adoption of distributed ledger technologies, regulatory compliance, and integration of blockchain solutions into existing financial frameworks. By combining deep market knowledge with technical insight, we empower clients to unlock new efficiencies, enhance transparency, and capitalize on the disruptive potential of blockchain.
+                    <br /><br />Meanwhile, our Crypto Asset Advisory team specializes in helping clients understand, evaluate, and manage digital assets. From investment strategies in cryptocurrencies and tokenized assets to risk management and custody solutions, our advisory services ensure that clients are positioned to benefit from both emerging opportunities and long-term structural shifts in the market.
+                    <br /><br />Together, Blockchain Financial Advisory and Crypto Asset Advisory provide a holistic approach that reflects the increasing interconnection between traditional financial services and the digital economy. We are uniquely positioned to leverage global market trends, helping clients embrace innovation while safeguarding their strategic and financial goals.
+                    <br /><br />With a foundation in trust, expertise, and forward-looking analysis, we stand as a partner for institutions and investors who want to thrive in the era of decentralized finance and digital assets.
+                    <br /><br />
                   </p>
                 </div>
                 <div
@@ -2481,6 +2446,8 @@ currentYearField.innerText = new Date().getFullYear();
 
 <!-- 多语言翻译功能脚本 - 引用公共文件 -->
 <script src="static/js/translation.js" type="text/javascript"></script>
+<!-- 多语言下拉选择器交互脚本 -->
+<script src="static/js/language-dropdown.js" type="text/javascript"></script>
 <!-- 翻译脚本已移至公共文件，以下为备份注释
 <script>
 // 翻译源配置

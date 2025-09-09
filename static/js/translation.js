@@ -216,18 +216,19 @@ function changeLanguage(langCode) {
     }
 }
 
-// 更新语言按钮状态
+// 更新语言按钮状态 - 兼容新的下拉框结构
 function updateLanguageButtons(langCode) {
+    // 兼容旧的按钮结构
     const buttons = document.querySelectorAll('.language-selector button');
-    
+
     // 清除所有按钮的active状态
     buttons.forEach(btn => {
         btn.classList.remove('active');
     });
-    
+
     // 设置目标按钮为active
     const buttonId = `lang-${langCode.toLowerCase().replace('_', '-')}`;
-    
+
     const targetBtn = document.getElementById(buttonId);
     if (targetBtn) {
         targetBtn.classList.add('active');
@@ -235,11 +236,29 @@ function updateLanguageButtons(langCode) {
         // 如果直接查找失败，尝试遍历按钮
         buttons.forEach(btn => {
             const onclick = btn.getAttribute('onclick');
-            
+
             if (onclick && onclick.includes(`'${langCode}'`)) {
                 btn.classList.add('active');
             }
         });
+    }
+
+    // 兼容新的下拉框结构
+    const dropdownOptions = document.querySelectorAll('.language-option');
+    if (dropdownOptions.length > 0) {
+        dropdownOptions.forEach(option => {
+            const optionLang = option.getAttribute('data-lang');
+            if (optionLang === langCode) {
+                option.classList.add('active');
+            } else {
+                option.classList.remove('active');
+            }
+        });
+
+        // 更新下拉框显示的当前语言
+        if (typeof updateCurrentLanguageDisplay === 'function') {
+            updateCurrentLanguageDisplay(langCode);
+        }
     }
 }
 

@@ -32,6 +32,12 @@
       rel="stylesheet"
       type="text/css"
     />
+    <!-- 多语言下拉选择器样式 -->
+    <link
+      href="static/css/language-dropdown.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link
       href="https://fonts.gstatic.com"
@@ -278,48 +284,11 @@
       display: none !important;
     }
 
-    .language-selector {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .language-selector button {
-      background: transparent;
-      border: 1px solid #dee2e6;
-      border-radius: 0.25rem;
-      padding: 0.375rem 0.75rem;
-      font-size: 0.875rem;
-      color: var(--navy);
-      cursor: pointer;
-      transition: all 0.15s ease-in-out;
-      font-family: inherit;
-    }
-
-    .language-selector button:hover {
-      border-color: var(--bright-blue);
-      color: var(--bright-blue);
-    }
-
-    .language-selector button.active {
-      background-color: var(--bright-blue);
-      border-color: var(--bright-blue);
-      color: var(--white);
-    }
-
-    @media screen and (max-width: 767px) {
-      .language-selector {
-        justify-content: center;
-        margin-top: 1rem;
-      }
-      
-      .language-selector button {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
-      }
-    }
+    /* 语言选择器样式已移至 static/css/language-dropdown.css */
     </style>
     <script src="static/js/translation.js" type="text/javascript"></script>
+    <!-- 多语言下拉选择器交互脚本 -->
+    <script src="static/js/language-dropdown.js" type="text/javascript"></script>
   </head>
   <body data-barba="wrapper">
     <div data-w-id="d24e5ea8-78da-f5b7-6dab-ac39945b55b0" class="page-wrapper">
@@ -705,9 +674,27 @@ a,
                 </div>
                 <!-- 语言选择器 -->
                 <div class="language-selector">
-                  <button onclick="changeLanguage('en')" id="lang-en" class="active">English</button>
-                  <button onclick="changeLanguage('zh-CN')" id="lang-zh-cn">简体中文</button>
-                  <button onclick="changeLanguage('zh-TW')" id="lang-zh-tw">繁體中文</button>
+                  <div class="language-dropdown-trigger">
+                    <div class="current-language">
+                      <div class="language-flag">EN</div>
+                      <span class="language-name">English</span>
+                    </div>
+                    <div class="dropdown-arrow"></div>
+                  </div>
+                  <div class="language-dropdown-menu">
+                    <button class="language-option active" data-lang="en">
+                      <div class="language-flag">EN</div>
+                      <span>English</span>
+                    </button>
+                    <button class="language-option" data-lang="zh-CN">
+                      <div class="language-flag">中</div>
+                      <span>简体中文</span>
+                    </button>
+                    <button class="language-option" data-lang="zh-TW">
+                      <div class="language-flag">繁</div>
+                      <span>繁體中文</span>
+                    </button>
+                  </div>
                 </div>
                 <!-- 隐藏的谷歌翻译元素 -->
                 <div id="google_translate_element" style="display: none;"></div>

@@ -1,0 +1,187 @@
+/**
+ * 多语言下拉选择器样式
+ * 基于项目主题色设计，替代原有的三按钮布局
+ */
+
+/* 语言选择器容器 */
+.language-selector {
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
+  z-index: 100;
+}
+
+/* 下拉触发器 */
+.language-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--white, #fff);
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--navy, #15273c);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  justify-content: space-between;
+  user-select: none;
+  position: relative;
+  z-index: 101;
+  pointer-events: auto;
+}
+
+.language-dropdown-trigger:hover {
+  border-color: var(--bright-blue, #268bff);
+  box-shadow: 0 0 0 2px rgba(38, 139, 255, 0.1);
+}
+
+.language-dropdown-trigger.active {
+  border-color: var(--bright-blue, #268bff);
+  box-shadow: 0 0 0 2px rgba(38, 139, 255, 0.15);
+}
+
+/* 当前选中语言显示 */
+.current-language {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 500;
+}
+
+/* 语言图标/标识 */
+.language-flag {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--white, #fff);
+  background: var(--bright-blue, #268bff);
+}
+
+/* 下拉箭头 */
+.dropdown-arrow {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--navy, #15273c);
+  transition: transform 0.2s ease;
+}
+
+.language-dropdown-trigger.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* 下拉菜单容器 */
+.language-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--white, #fff);
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.language-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* 下拉菜单选项 */
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--navy, #15273c);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+}
+
+.language-option:hover {
+  background-color: rgba(38, 139, 255, 0.08);
+  color: var(--bright-blue, #268bff);
+}
+
+.language-option.active {
+  background-color: var(--bright-blue, #268bff);
+  color: var(--white, #fff);
+}
+
+.language-option.active .language-flag {
+  background: var(--white, #fff);
+  color: var(--bright-blue, #268bff);
+}
+
+/* 分隔线 */
+.language-option:not(:last-child) {
+  border-bottom: 1px solid #f1f3f4;
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 767px) {
+  .language-dropdown-trigger {
+    min-width: 100px;
+    font-size: 0.8125rem;
+    padding: 0.4375rem 0.625rem;
+  }
+  
+  .language-flag {
+    width: 16px;
+    height: 16px;
+    font-size: 11px;
+  }
+  
+  .language-option {
+    padding: 0.5625rem 0.625rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* 保持浅色主题，去掉深色主题样式 */
+
+/* 动画增强 */
+.language-dropdown-trigger,
+.language-option {
+  position: relative;
+  overflow: hidden;
+}
+
+.language-dropdown-trigger::before,
+.language-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.language-dropdown-trigger:hover::before,
+.language-option:hover::before {
+  left: 100%;
+}

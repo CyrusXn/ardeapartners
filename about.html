@@ -32,6 +32,12 @@
       rel="stylesheet"
       type="text/css"
     />
+    <!-- 多语言下拉选择器样式 -->
+    <link
+      href="static/css/language-dropdown.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <style>
       @media (min-width: 992px) {
         html.w-mod-js:not(.w-mod-ix)
@@ -280,48 +286,18 @@
     }
 
     /* 自定义语言选择器样式 */
+    /* 语言选择器样式已移至 static/css/language-dropdown.css */
     .language-selector {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .language-selector button {
-      background: transparent;
-      border: 1px solid #dee2e6;
-      border-radius: 0.25rem;
-      padding: 0.375rem 0.75rem;
-      font-size: 0.875rem;
-      color: var(--navy);
-      cursor: pointer;
-      transition: all 0.15s ease-in-out;
-      font-family: inherit;
-    }
-
-    .language-selector button:hover {
-      border-color: var(--bright-blue);
-      color: var(--bright-blue);
-    }
-
-    .language-selector button.active {
-      background-color: var(--bright-blue);
-      border-color: var(--bright-blue);
-      color: var(--white);
-    }
-
-    @media screen and (max-width: 767px) {
-      .language-selector {
-        justify-content: center;
-        margin-top: 1rem;
-      }
-      
-      .language-selector button {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
-      }
-    }
+    /* 语言选择器样式已移至 static/css/language-dropdown.css */
     </style>
     <script src="static/js/translation.js" type="text/javascript"></script>
+    <!-- 多语言下拉选择器交互脚本 -->
+    <script src="static/js/language-dropdown.js" type="text/javascript"></script>
   </head>
   <body data-barba="wrapper">
     <div data-w-id="d24e5ea8-78da-f5b7-6dab-ac39945b55b0" class="page-wrapper">
@@ -840,9 +816,27 @@ a,
                 </div>
                 <!-- 语言选择器 -->
                 <div class="language-selector">
-                  <button onclick="changeLanguage('en')" id="lang-en" class="active">English</button>
-                  <button onclick="changeLanguage('zh-CN')" id="lang-zh-cn">简体中文</button>
-                  <button onclick="changeLanguage('zh-TW')" id="lang-zh-tw">繁體中文</button>
+                  <div class="language-dropdown-trigger">
+                    <div class="current-language">
+                      <div class="language-flag">EN</div>
+                      <span class="language-name">English</span>
+                    </div>
+                    <div class="dropdown-arrow"></div>
+                  </div>
+                  <div class="language-dropdown-menu">
+                    <button class="language-option active" data-lang="en">
+                      <div class="language-flag">EN</div>
+                      <span>English</span>
+                    </button>
+                    <button class="language-option" data-lang="zh-CN">
+                      <div class="language-flag">中</div>
+                      <span>简体中文</span>
+                    </button>
+                    <button class="language-option" data-lang="zh-TW">
+                      <div class="language-flag">繁</div>
+                      <span>繁體中文</span>
+                    </button>
+                  </div>
                 </div>
                 <!-- 隐藏的谷歌翻译元素 -->
                 <div id="google_translate_element" style="display: none;"></div>
@@ -917,27 +911,11 @@ a,
                   class="_2cols_cta-wrapper"
                 >
                   <p class="_2cols_cta-title">
-                    Windsor Heritage Capital is the result of an alliance forged
-                    by our founders. After decades of collaborative work at
-                    Goldman Sachs, they endeavored to create a firm where they
-                    could pursue their passion for advising the world's best
-                    companies and leaders in an environment of partnership and
-                    trust. Recognizing the significant demand for truly
-                    independent and trustworthy strategic and financial advice,
-                    Windsor Heritage Capital was established with a unique
-                    partnership culture to attract professionals who share their
-                    vision.<br /><br />The Windsor Heritage Capital team shares
-                    a strong belief in the power of teamwork and partnership.
-                    Placing clients' interests above all else, we strive to
-                    provide advice that is based on rigorous consideration, deep
-                    experience and an unbiased view of what is best for our
-                    clients. Our clients represent not just another transaction,
-                    they are our trusted partners, and we want them to
-                    succeed.<br /><br />Today, our advisory business provides an
-                    array of services from strategic advisory and mergers and
-                    acquisitions to capital raising. Our expertise serves
-                    clients from a wide spectrum of industries with a deep
-                    concentration in financial services. <br /><br />Our firm
+                    Windsor Heritage Capital is the result of an alliance forged by our founders. After decades of collaborative work at Goldman Sachs and in Global Asset Management, they sought to create a firm where they could pursue their passion for advising the world's best companies and leaders in an environment of partnership and trust. Recognizing the significant demand within Global Asset Management for truly independent and trustworthy strategic and financial advice, Windsor Heritage Capital was established with a unique partnership culture to attract professionals who share their vision.<br /><br />The Windsor Heritage Capital team shares
+                    The Windsor Heritage Capital team shares a strong belief in the power of teamwork and partnership. Placing clients' interests above all else, we strive to provide advice that is based on rigorous consideration, deep experience and an unbiased view of what is best for our clients. In the sphere of Global Asset Management, our clients represent not just another transaction — they are our trusted partners, and we want them to succeed alongside us.<br /><br />Today, our advisory business provides an
+                    Today, our advisory business provides a wide array of services, from strategic advisory and mergers and acquisitions to capital raising and Global Asset Management consulting. Our expertise serves clients from a broad spectrum of industries, with a deep concentration in financial services, while continuously strengthening our Global Asset Management capabilities. <br /><br />
+                    Windsor Heritage Capital will always be large enough to deliver the most comprehensive global advice and innovative Global Asset Management solutions, while remaining small enough to preserve our culture of partnership and trust. For clients seeking enduring value, we are committed to being a long-term advisor and a reliable Global Asset Management partner. <br /><br />
+                    Our firm
                     will always be large enough to deliver the most
                     comprehensive global advice, while remaining small enough to
                     protect our culture.
@@ -1410,6 +1388,53 @@ a,
                     </div>
                     <div
                       id="w-node-c1ab7c73-f149-8c19-fba9-266656b3cb4c-8ee67d2c"
+                      class="yellow-bar"
+                    ></div>
+                  </div>
+                  <div class="card-features_item is-long">
+                    <div class="card-features_svg-wrapper">
+                      <div
+                        class="card-features_item-svg-yellow is-long-card w-embed"
+                      >
+                        <svg
+                          height="100%"
+                          viewbox="0 0 306 181"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M112.254 105.431V105.431C126.665 111.934 132.747 129.235 125.762 143.419V143.419C118.862 157.431 101.836 163.344 87.8233 156.444L41.2093 133.488C18.45 122.281 9.08576 94.7448 20.2936 71.9855V71.9855C31.5015 49.2263 59.0373 39.862 81.7965 51.0699L138.394 78.9414C146.893 83.1266 157.175 79.6299 161.36 71.1312V71.1312C165.545 62.6325 162.049 52.3503 153.55 48.1651L121.833 32.5459C104.667 24.0927 83.8992 31.1554 75.446 48.321V48.321C67.105 65.2586 73.8613 85.7562 90.6391 94.4143L103.666 101.137L112.254 105.431Z"
+                            stroke="currentcolor"
+                          ></path>
+                          <path
+                            d="M192.489 71.172V71.172C178.538 63.7321 173.611 46.0682 181.516 32.3758V32.3758C189.326 18.8491 206.704 14.0721 220.231 21.8817L265.229 47.8615C287.2 60.5462 294.727 88.6397 282.043 110.61V110.61C269.358 132.581 241.265 140.108 219.294 127.424L164.658 95.8795C156.454 91.1429 145.964 93.9538 141.227 102.158V102.158C136.491 110.362 139.301 120.853 147.506 125.589L178.123 143.266C194.694 152.833 215.883 147.156 225.45 130.585V130.585C234.89 114.235 229.5 93.3361 213.33 83.5902L200.775 76.0231L192.489 71.172Z"
+                            stroke="currentcolor"
+                          ></path>
+                        </svg>
+                      </div>
+                      <h3 class="text-size-large">Blockchain Financial Advisory & Crypto Asset Advisory</h3>
+                    </div>
+                    <div
+                      id="w-node-_314b37f7-2b4b-6be0-58a9-88c5683d8788-8ee67d2c"
+                      class="card-features_item-rich w-richtext"
+                    >
+                      <ul role="list">
+                        <li>
+                          Cutting-edge expertise in the evolving blockchain and digital asset landscape
+                        </li>
+                        <li>
+                          Uniquely positioned to leverage the rapid growth of decentralized finance and digital currencies
+                        </li>
+                        <li>
+                          Deep understanding of blockchain ecosystems, crypto assets, and their increasing interconnection with global
+                        </li>
+                        <li>
+                          financial markets
+                        </li>
+                      </ul>
+                    </div>
+                    <div
+                      id="w-node-_3eed2542-a08f-740d-fe6e-42b92e546790-8ee67d2c"
                       class="yellow-bar"
                     ></div>
                   </div>
