@@ -80,38 +80,128 @@ const LOCAL_TRANSLATIONS = {
     }
 };
 
+// 自定义翻译修正映射 - 用于修正谷歌翻译的错误
+const TRANSLATION_CORRECTIONS = {
+    'zh-CN': {
+        // 将"遗产"替换为"传承"
+        '遗产': '传承',
+        '温莎遗产资本': '温莎传承资本',
+        'Windsor 遗产 Capital': 'Windsor 传承 Capital',
+        'Windsor遗产Capital': 'Windsor传承Capital',
+        // 可能的其他变体
+        '遗产资本': '传承资本',
+        '遗产投资': '传承投资',
+        '遗产管理': '传承管理'
+    },
+    'zh-TW': {
+        // 繁体中文的对应修正
+        '遺產': '傳承',
+        '溫莎遺產資本': '溫莎傳承資本',
+        'Windsor 遺產 Capital': 'Windsor 傳承 Capital',
+        'Windsor遺產Capital': 'Windsor傳承Capital',
+        // 可能的其他变体
+        '遺產資本': '傳承資本',
+        '遺產投資': '傳承投資',
+        '遺產管理': '傳承管理'
+    }
+};
+
+// 应用翻译修正 - 修正谷歌翻译的错误
+function applyTranslationCorrections(langCode) {
+    if (!TRANSLATION_CORRECTIONS[langCode]) return;
+
+    const corrections = TRANSLATION_CORRECTIONS[langCode];
+
+    // 遍历页面中的所有文本节点
+    function walkTextNodes(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            let text = node.textContent;
+            let hasChanges = false;
+
+            // 应用所有修正规则
+            for (const [wrong, correct] of Object.entries(corrections)) {
+                if (text.includes(wrong)) {
+                    text = text.replace(new RegExp(wrong, 'g'), correct);
+                    hasChanges = true;
+                }
+            }
+
+            // 如果有修改，更新文本内容
+            if (hasChanges) {
+                node.textContent = text;
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            // 跳过script和style标签
+            if (node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+                // 递归处理子节点
+                for (let child of node.childNodes) {
+                    walkTextNodes(child);
+                }
+            }
+        }
+    }
+
+    // 从body开始遍历所有文本节点
+    if (document.body) {
+        walkTextNodes(document.body);
+    }
+
+    // 同时处理title标签
+    if (document.title) {
+        let title = document.title;
+        for (const [wrong, correct] of Object.entries(corrections)) {
+            if (title.includes(wrong)) {
+                title = title.replace(new RegExp(wrong, 'g'), correct);
+            }
+        }
+        document.title = title;
+    }
+
+    // 处理meta标签中的内容
+    const metaTags = document.querySelectorAll('meta[content]');
+    metaTags.forEach(meta => {
+        let content = meta.getAttribute('content');
+        for (const [wrong, correct] of Object.entries(corrections)) {
+            if (content && content.includes(wrong)) {
+                content = content.replace(new RegExp(wrong, 'g'), correct);
+                meta.setAttribute('content', content);
+            }
+        }
+    });
+}
+
 // 动态加载翻译脚本
 function loadTranslationScript() {
     if (loadAttemptCount >= TRANSLATION_SOURCES.length) {
         showTranslateError('Translation service is temporarily unavailable. Please check your network connection.');
         return;
     }
-    
+
     const source = TRANSLATION_SOURCES[loadAttemptCount];
-    
+
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = source.url;
-    
+
     // 设置超时处理
     const timeout = setTimeout(() => {
         script.remove();
         loadAttemptCount++;
         loadTranslationScript();
     }, source.timeout);
-    
+
     script.onload = () => {
         clearTimeout(timeout);
         currentTranslationSource = source;
     };
-    
+
     script.onerror = () => {
         clearTimeout(timeout);
         script.remove();
         loadAttemptCount++;
         loadTranslationScript();
     };
-    
+
     document.head.appendChild(script);
 }
 
@@ -204,6 +294,11 @@ function changeLanguage(langCode) {
                 // 重置标志位
                 window.languageChanging = false;
             } else if (done) {
+                // 翻译完成后应用修正
+                setTimeout(() => {
+                    applyTranslationCorrections(langCode);
+                }, 500); // 给翻译一点时间完成渲染
+
                 // 翻译完成，重置标志位
                 window.languageChanging = false;
             }
@@ -459,6 +554,11 @@ function applyStoredLanguage() {
             if (error) {
                 showTranslateError();
             } else if (done) {
+                // 翻译完成后应用修正
+                setTimeout(() => {
+                    applyTranslationCorrections(storedLang);
+                }, 500); // 给翻译一点时间完成渲染
+
                 // 清除本地翻译标记，因为Google翻译已成功
                 sessionStorage.removeItem('usingLocalTranslation');
             }
@@ -525,10 +625,31 @@ window.addEventListener('load', function() {
     window.addEventListener('online', function() {
         // Network connection restored
     });
-    
+
     window.addEventListener('offline', function() {
         // Network connection lost
     });
+
+    // 添加DOM变化监听器，用于处理动态内容的翻译修正
+    if (window.MutationObserver) {
+        const observer = new MutationObserver(function(mutations) {
+            const currentLang = getStoredLanguage();
+            if (currentLang !== 'en' && TRANSLATION_CORRECTIONS[currentLang]) {
+                // 延迟执行修正，避免频繁触发
+                clearTimeout(window.correctionTimeout);
+                window.correctionTimeout = setTimeout(() => {
+                    applyTranslationCorrections(currentLang);
+                }, 1000);
+            }
+        });
+
+        // 开始观察DOM变化
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            characterData: true
+        });
+    }
 });
 
 // 将主要函数暴露到全局作用域，供页面调用
